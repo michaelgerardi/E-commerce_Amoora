@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    {{Home Utama}}
+                    
                 </div>
             </div>
         </div>
