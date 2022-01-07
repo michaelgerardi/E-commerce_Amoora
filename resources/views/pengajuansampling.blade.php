@@ -61,6 +61,28 @@
             </div>
             
         </div>
-    </div>
+
+        <div class="col-md-12 mt-5">
+            <div class="card">
+                <div class="card-header">Form Set Slot</div>
+
+                <div class="card-body">
+                    <div class="row row-cols-1 row-cols-md-3 g-4">
+                        @foreach($sampling as $row)
+                        <div class="col">
+                            <div class="card h-100">
+                            <img src="..." class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">{{DB::table('slot_s')->where('id', $row->slot_id)->value('mulai')}} s/d {{DB::table('slot_s')->where('id', $row->slot_id)->value('selesai')}}</h5>
+                                <h5 class="card-title">{{$row->model}}</h5>
+                                <p class="card-text">{{$row->desc}}</p>
+                            </div>
+                            </div>
+                        </div> 
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
 </div>
 @endsection

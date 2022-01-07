@@ -36,6 +36,9 @@
                     <li class="nav-item">
                         <a class="nav-link active" href="{{route('viewslotsampling')}}">Slot Sampling</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{route('viewslistsampling')}}">List Sampling</a>
+                    </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

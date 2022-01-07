@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Slot_S;
+use App\Models\Sampling;
 
 class AdminController extends Controller
 {
@@ -19,6 +20,11 @@ class AdminController extends Controller
     {
         $slot=Slot_S::all();
         return view('setslotsampling',compact('slot'));
+    }
+    public function viewslistsampling()
+    {
+        $sampling=Sampling::all();
+        return view('listsampling',compact('sampling'));
     }
     public function saveslot(Request $request)
     {

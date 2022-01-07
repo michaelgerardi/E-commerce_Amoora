@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Slot_S;
 use App\Models\Sampling;
+use Auth;
 class UserController extends Controller
 {
     public function __construct()
@@ -18,11 +19,15 @@ class UserController extends Controller
     }
     public function viewsampling()
     {
+        $id=Auth::user()->id;
         $slot=Slot_S::all();
-        return view('pengajuansampling',compact('slot'));
+        $sampling=Sampling::where('cus_id','=', $id)->get();
+        return view('pengajuansampling',compact('slot','sampling'));
+        //return $slot;
     }
     public function savesampling(Request $request)
     {
+        $id=Auth::user()->id;
         $this->validate($request, [
             'slot_id' => 'required',
             'model' => 'required',
@@ -37,6 +42,7 @@ class UserController extends Controller
 
         $Sampling= new Sampling([
             'slot_id' => $request->slot_id,
+            'cus_id' => $id,
             'model' => $request->model,
             'img' => $final,
             'desc' => $request->desc,
@@ -45,5 +51,6 @@ class UserController extends Controller
         ]);
         $Sampling->save();
         return redirect()->route('viewsampling');
+        // return $id;
     }
 }

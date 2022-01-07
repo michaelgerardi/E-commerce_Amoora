@@ -25,9 +25,10 @@ Route::get('/admin/home', [App\Http\Controllers\AdminController::class, 'index']
 
 
 //Admin//
-    //slot//
+    //sampling//
 Route::post('/admin/slotsampling/save', [App\Http\Controllers\AdminController::class, 'saveslot'])->name('saveslotS');
 Route::get('/admin/slotsampling', [App\Http\Controllers\AdminController::class, 'viewslotsampling'])->name('viewslotsampling');
+Route::get('/admin/listsampling', [App\Http\Controllers\AdminController::class, 'viewslistsampling'])->name('viewslistsampling');
 
 //customer//
     //sampling//

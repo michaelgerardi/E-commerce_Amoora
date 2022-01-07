@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-6">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header">Form Set Slot</div>
 
@@ -39,7 +39,7 @@
             </div>
             
         </div>
-        <div class="col-md-6">
+        <div class="col-md-12 mt-5">
             <div class="card">
                 <div class="card-header">Slot</div>
 
@@ -63,9 +63,9 @@
                        @foreach($slot as $row)
                         <tr>
                             <td class="text-center">{{$row->title}}</td>
-                            <td class="text-center">{{$row->mulai}}-{{$row->selesai}}</td>
+                            <td class="text-center">{{$row->mulai}} s/d {{$row->selesai}}</td>
                             <td class="text-center">{{$row->jml}}</td>
-                            <td class="text-center">{{$row->status}}</td>
+                            <td class="text-center"> @if($row->status==0) Aktif @endif</td>
                             <td class="text-center"><a type="button" class="btn btn-danger" href="">Delete</a></td>
                         </tr>
                         @endforeach
