@@ -18,7 +18,7 @@ class CreateSlotS extends Migration
             $table->string('title');
             $table->date('mulai');
             $table->date('selesai');
-            $table->tinyInteger('jml');
+            $table->tinyInteger('jml')->default('0');
             $table->char('status', 1);
             $table->timestamps();
             
@@ -32,6 +32,7 @@ class CreateSlotS extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('slot_s');
     }
 }

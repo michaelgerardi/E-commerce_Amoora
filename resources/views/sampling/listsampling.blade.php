@@ -30,7 +30,10 @@
                             <td class="text-center">{{DB::table('slot_s')->where('id', $row->slot_id)->value('mulai')}} s/d {{DB::table('slot_s')->where('id', $row->slot_id)->value('selesai')}}</td>
                             <td class="text-center">{{$row->model}}</td>
                             <td class="text-center">{{$row->jml}}</td>
-                            <td class="text-center"><a type="button" class="btn btn-danger" href="">Delete</a></td>
+                            <td class="text-center">
+                            <a href="{{route('adminvieweditsampling',['id' => $row->id])}}" class="btn btn-primary">Detail</a>
+                                <a type="button" class="btn btn-danger" href="{{route('admindelS',['id' => $row->id])}}">Delete</a>
+                            </td>
                         </tr>
                         @endforeach  
                     </tbody>

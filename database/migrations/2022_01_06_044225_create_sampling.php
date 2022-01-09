@@ -22,6 +22,7 @@ class CreateSampling extends Migration
             $table->text('img');
             $table->text('desc');
             $table->tinyInteger('jml');
+            $table->char('status', 1);
             $table->timestamps();
             $table->foreign('slot_id')->references('id')->on('slot_s');
             $table->foreign('cus_id')->references('id')->on('users');
