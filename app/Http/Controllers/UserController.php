@@ -22,8 +22,15 @@ class UserController extends Controller
     {
         $id=Auth::user()->id;
         $slot=Slot_S::where('status','=', '1')->get();
-        $sampling=Sampling::where('cus_id','=', $id)->get();
-        return view('sampling.pengajuansampling',compact('slot','sampling'));
+        $sampling=Sampling::where([
+            ['cus_id','=', $id],
+            ['status','!=', '4'],
+        ])->get();
+        $samplingS=Sampling::where([
+            ['cus_id','=', $id],
+            ['status','=', '4'],
+        ])->get();
+        return view('sampling.pengajuansampling',compact('slot','sampling','samplingS'));
         //return $slot;
     }
     public function savesampling(Request $request)

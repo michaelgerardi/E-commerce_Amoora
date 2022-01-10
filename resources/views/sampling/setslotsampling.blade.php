@@ -65,7 +65,7 @@
                             <td class="text-center">{{$row->title}}</td>
                             <td class="text-center">{{$row->mulai}} s/d {{$row->selesai}}</td>
                             <td class="text-center">{{$row->jml}}</td>
-                            <td class="text-center"> @if($row->status==1) Aktif @endif</td>
+                            <td class="text-center"> @if($row->status==1) Aktif @else Non-Aktif @endif</td>
                             <td class="text-center">
                                 <a type="button" class="btn btn-success" href="{{route('vieweditslotsampling',['id' => $row->id])}}">Edit</a>
                                 <a type="button" class="btn btn-danger" href="{{route('delslotS',['id' => $row->id])}}">Delete</a>

@@ -126,12 +126,18 @@ class AdminController extends Controller
                 'model' => $request->model,
                 'desc' => $request->desc,
                 'jml' => $request->jml
-                
             ]); 
         }
         return redirect()->route('viewslistsampling');
        
         
     }
+    public function statusSampling(Request $request)
+    {
+        Sampling::where('id', $request->id)->update([
+            'status' => $request->status
+        ]);
+        return redirect()->route('viewslistsampling'); 
+    }    
     
 }

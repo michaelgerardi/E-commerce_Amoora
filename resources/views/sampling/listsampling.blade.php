@@ -31,8 +31,38 @@
                             <td class="text-center">{{$row->model}}</td>
                             <td class="text-center">{{$row->jml}}</td>
                             <td class="text-center">
-                            <a href="{{route('adminvieweditsampling',['id' => $row->id])}}" class="btn btn-primary">Detail</a>
+                                <a href="{{route('adminvieweditsampling',['id' => $row->id])}}" class="btn btn-primary">Detail</a>
                                 <a type="button" class="btn btn-danger" href="{{route('admindelS',['id' => $row->id])}}">Delete</a>
+                                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal{{$loop->iteration}}">
+                                    Set Status
+                                </button>
+                                <div class="modal fade" id="exampleModal{{$loop->iteration}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Status</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Ubah Status Sampling
+                                    <form method="post" action="{{route('statusSampling')}}" enctype='multipart/form-data'>
+                                    @csrf
+                                    <input type="hidden" name="id" value="{{$row->id}}">
+                                    <select class="form-select" name="status" aria-label="Default select example">
+                                        <option value="1">Waiting list</option>
+                                        <option value="2">Produksi</option>
+                                        <option value="3">Finishing</option>
+                                        <option value="4">Selesai</option>
+                                    </select>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary">Save changes</button>
+                                    </form>
+                                    </div>
+                                    </div>
+                                </div>
+                                </div>
                             </td>
                         </tr>
                         @endforeach  
