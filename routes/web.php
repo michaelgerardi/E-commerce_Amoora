@@ -36,6 +36,9 @@ Route::get('/admin/listsampling/del/{id}', [App\Http\Controllers\AdminController
 Route::get('/admin/editsampling/{id}', [App\Http\Controllers\AdminController::class, 'vieweditsampling'])->name('adminvieweditsampling');
 Route::post('/admin/editsampling/saveedit', [App\Http\Controllers\AdminController::class, 'saveeditS'])->name('adminsaveeditS');
 Route::post('/admin/editsampling/statusSampling', [App\Http\Controllers\AdminController::class, 'statusSampling'])->name('statusSampling');
+    //produksi//
+Route::get('/admin/slotproduksi', [App\Http\Controllers\AdminController::class, 'viewslotproduksi'])->name('viewslotproduksi');
+Route::post('/admin/slotproduksi/saveedit', [App\Http\Controllers\AdminController::class, 'saveslotP'])->name('saveslotP');
 
 //customer//
     //sampling//

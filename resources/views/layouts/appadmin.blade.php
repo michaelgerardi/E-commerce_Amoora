@@ -39,6 +39,9 @@
                     <li class="nav-item">
                         <a class="nav-link active" href="{{route('viewslistsampling')}}">List Sampling</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{route('viewslotproduksi')}}">Slot Produksi</a>
+                    </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

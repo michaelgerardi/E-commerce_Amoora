@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Slot_S;
+use App\Models\Slot_P;
 use App\Models\Sampling;
 use Illuminate\Support\Facades\Storage;
 
@@ -129,9 +130,8 @@ class AdminController extends Controller
             ]); 
         }
         return redirect()->route('viewslistsampling');
-       
-        
     }
+
     public function statusSampling(Request $request)
     {
         Sampling::where('id', $request->id)->update([
@@ -139,5 +139,34 @@ class AdminController extends Controller
         ]);
         return redirect()->route('viewslistsampling'); 
     }    
-    
+
+    public function viewslotproduksi()
+    {
+        $slot=Slot_P::all();
+        return view('produksi.setslotproduksi',compact('slot'));
+    }
+
+    public function saveslotP(Request $request)
+    {
+        $this->validate($request, [
+            'title' => 'required',
+            'mulai' => 'required',
+            'selesai' => 'required'      
+        ]);
+
+        $Slot_P= new Slot_P([
+            'title' => $request->title,
+            'mulai' => $request->mulai,
+            'selesai' => $request->selesai,
+            'status' => 1
+            
+        ]);
+        $Slot_P->save();
+        return redirect()->route('viewslotproduksi');
+    }
+    public function viewslistproduksi()
+    {
+        $sampling=Sampling::all();
+        return view('produksi.listproduksi',compact('sampling'));
+    }
 }
