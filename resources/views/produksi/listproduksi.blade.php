@@ -24,7 +24,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($sampling as $row)
+                        @foreach($produksi as $row)
                         <tr>
                             <td class="text-center">{{DB::table('users')->where('id', $row->cus_id)->value('name')}}</td>
                             <td class="text-center">{{DB::table('slot_s')->where('id', $row->slot_id)->value('mulai')}} s/d {{DB::table('slot_s')->where('id', $row->slot_id)->value('selesai')}}</td>
@@ -44,7 +44,7 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        Ubah Status Sampling
+                                        Ubah Status produksi
                                     <form method="post" action="{{route('statusSampling')}}" enctype='multipart/form-data'>
                                     @csrf
                                     <input type="hidden" name="id" value="{{$row->id}}">

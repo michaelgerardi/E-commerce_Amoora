@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Slot_S;
 use App\Models\Slot_P;
 use App\Models\Sampling;
+use App\Models\Produksi;
 use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
@@ -166,7 +167,7 @@ class AdminController extends Controller
     }
     public function viewslistproduksi()
     {
-        $sampling=Sampling::all();
-        return view('produksi.listproduksi',compact('sampling'));
+        $produksi=Produksi::all();
+        return view('produksi.listproduksi',compact('produksi'));
     }
 }

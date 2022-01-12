@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Slot_S;
+use App\Models\Slot_P;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Sampling;
 use Auth;
@@ -156,7 +157,21 @@ class UserController extends Controller
         }
         Slot_S::where('id', $request->slot_id)->increment('jml');
         return redirect()->route('viewsampling');
-       
-        
     }
+    public function viewproduksi()
+    {
+        $id=Auth::user()->id;
+        $slot=Slot_P::where('status','=', '1')->get();
+        $samplingS=Sampling::where([
+            ['cus_id','=', $id],
+            ['status','=', '4'],
+        ])->get();
+        return view('produksi.pengajuanproduksi',compact('slot','samplingS'));
+        //return $slot;
+    }
+    public function viewinputproduksi()
+    {
+        return view('produksi.inputproduksi');
+    }
+
 }

@@ -39,6 +39,7 @@ Route::post('/admin/editsampling/statusSampling', [App\Http\Controllers\AdminCon
     //produksi//
 Route::get('/admin/slotproduksi', [App\Http\Controllers\AdminController::class, 'viewslotproduksi'])->name('viewslotproduksi');
 Route::post('/admin/slotproduksi/saveedit', [App\Http\Controllers\AdminController::class, 'saveslotP'])->name('saveslotP');
+Route::get('/admin/listproduksi', [App\Http\Controllers\AdminController::class, 'viewslistproduksi'])->name('viewslistproduksi');
 
 //customer//
     //sampling//
@@ -49,7 +50,9 @@ Route::post('/editsampling/saveedit', [App\Http\Controllers\UserController::clas
 Route::get('/reviewsampling/{id}', [App\Http\Controllers\UserController::class, 'revisisampling'])->name('revisisampling');
 Route::post('/reviewsampling/saveedit', [App\Http\Controllers\UserController::class, 'saverevisiS'])->name('saverevisiS');
 Route::get('/sampling/del/{id}', [App\Http\Controllers\UserController::class, 'delS'])->name('delS');
-
+    //produksi//
+Route::get('/produksi', [App\Http\Controllers\UserController::class, 'viewproduksi'])->name('viewproduksi');
+Route::get('/produksi/input', [App\Http\Controllers\UserController::class, 'viewinputproduksi'])->name('viewinputproduksi');
 
 // Route::group(['middleware' => ['auth:admin']], function () {
 //     Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
