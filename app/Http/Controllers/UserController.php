@@ -112,4 +112,51 @@ class UserController extends Controller
         Sampling::where('id', $id)->delete();
         return redirect()->route('viewsampling');
     }
+    public function revisisampling($id)
+    {
+        $sampling=Sampling::where('id','=', $id)->first();
+        $slot=Slot_S::where('status','=', '1')->get();
+        //return $sampling;
+        return view('sampling.revisisampling',compact('sampling','slot'));
+    }
+    public function saverevisiS(Request $request)
+    {
+        $id=Auth::user()->id;
+        $this->validate($request, [
+            'slot_id' => 'required',
+            'model' => 'required',
+            'desc' => 'required',
+            'jml' => 'required'      
+        ]);
+        if($request->img_model != null){
+        $fullname = $request->file('img_model')->getClientOriginalName();
+        $extn =$request->file('img_model')->getClientOriginalExtension();
+        $finalS=$id.$request->slot_id.'sampling'.'_'.time().'.'.$extn;
+        $path = $request->file('img_model')->storeAs('public/imgsampling', $finalS);
+        $del=Sampling::where('id','=', $request->id)->value('img');
+        $delpath='public/imgsampling/'.$del;
+        Storage::delete($delpath);
+        Sampling::where('id', $request->id)->update([
+            'slot_id' => $request->slot_id,
+            'model' => $request->model,
+            'img' => $finalS,
+            'desc' => $request->desc,
+            'jml' => $request->jml
+            
+        ]);
+        }else{
+            Sampling::where('id', $request->id)->update([
+                'slot_id' => $request->slot_id,
+                'model' => $request->model,
+                'desc' => $request->desc,
+                'status' => 0,
+                'jml' => $request->jml
+                
+            ]); 
+        }
+        Slot_S::where('id', $request->slot_id)->increment('jml');
+        return redirect()->route('viewsampling');
+       
+        
+    }
 }

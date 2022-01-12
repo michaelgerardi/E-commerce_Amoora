@@ -120,7 +120,7 @@
                                 </h5>
                                 <h5 class="card-title">@if($row->model==0) rok @elseif($row->model==1) dress @else Top @endif</h5>
                                 <p class="card-text">{{$row->desc}}</p>
-                                <a href="{{route('vieweditsampling',['id' => $row->id])}}" class="btn btn-primary">Detail</a>
+                                <a href="{{route('revisisampling',['id' => $row->id])}}" class="btn btn-primary">Revisi</a>
                                 <a type="button" class="btn btn-danger" href="{{route('delS',['id' => $row->id])}}">Delete</a>
                             </div>
                             </div>
