@@ -15,13 +15,13 @@ class CreateSampling extends Migration
     {
         Schema::create('sampling', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('slot_id');
+            $table->unsignedBigInteger('slot_id')->nullable();
             $table->unsignedBigInteger('cus_id');
             $table->unsignedBigInteger('admin_id')->nullable();
             $table->char('model', 2);
             $table->text('img');
             $table->text('desc');
-            $table->tinyInteger('jml');
+            $table->tinyInteger('jml')->nullable();
             $table->char('status', 1);
             $table->timestamps();
             $table->foreign('slot_id')->references('id')->on('slot_s');
@@ -37,6 +37,7 @@ class CreateSampling extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('sampling');
     }
 }

@@ -7,21 +7,21 @@
         <div class="card mb-3" style="max-width: 540px;">
             <div class="row g-0">
                 <div class="col-md-4">
-                <img src="/storage/imgsampling/{{$sampling->img}}" class="img-fluid rounded-start" alt="...">
+                <img src="/storage/imgsampling/{{DB::table('sampling')->where('id', $produksi->samp_id)->value('img')}}" class="img-fluid rounded-start" alt="...">
                 </div>
                 <div class="col-md-8">
                 <div class="card-body">
                     <h4 class="card-title">
-                        @if($sampling->model==0) 
+                        @if(DB::table('sampling')->where('id', $produksi->samp_id)->value('model') == 0) 
                         Rok  
-                        @elseif($sampling->model==1) 
+                        @elseif(DB::table('sampling')->where('id', $produksi->samp_id)->value('model') ==1) 
                         Dress
-                        @elseif($sampling->model==2) 
+                        @elseif(DB::table('sampling')->where('id', $produksi->samp_id)->value('model') ==2) 
                         Top
                         @endif
 
                     </h4>
-                    <p class="card-text">{{$sampling->desc}}</p>
+                    <p class="card-text">{{$produksi->desc}}</p>
                     
                 </div>
                 </div>
@@ -37,29 +37,29 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    <form method="post" action="{{route('saveinputprod')}}" enctype='multipart/form-data'>
+                    <form method="post" action="{{route('saveeditprod')}}" enctype='multipart/form-data'>
                         @csrf
-                        <input type="hidden" class="form-control" name="samp_id" value="{{$sampling->id}}">
+                        <input type="hidden" class="form-control" name="id" value="{{$produksi->id}}">
                     <div class="form-group row">
                         <label class="control-label col-sm-2" for="nik">Slot</label>
                         <div class="col-sm-10">
-                        <select class="form-control" name="slot_id">
-                        @foreach($slot as $row)
-                            <option value="{{$row->id}}">{{$row->mulai}} sampai {{$row->selesai}}</option>
-                        @endforeach
+                        <select class="form-control" name="slot_id" disabled>
+                   
+                            <option value="">{{DB::table('slot_p')->where('id', $produksi->slot_id)->value('mulai')}} s/d {{DB::table('slot_p')->where('id', $produksi->slot_id)->value('selesai')}}</option>
+
                         </select>
                         </div>
                     </div>
                     <div class="form-group row mt-2">
                         <label class="control-label col-sm-2" for="nik">Deskripsi</label>
                         <div class="col-sm-10">
-                            <textarea class="form-control" name="desc"></textarea>
+                            <textarea class="form-control" name="desc">{{$produksi->desc}}</textarea>
                         </div>
                     </div>
                     <div class="form-group row mt-2">
                         <label class="control-label col-sm-2" for="nik">Jumlah Produksi</label>
                         <div class="col-sm-10">
-                            <input type="number" onkeypress="return event.charCode >= 48 && event.charCode <=57" class="form-control" name="jml" placeholder="">
+                            <input type="number" onkeypress="return event.charCode >= 48 && event.charCode <=57" class="form-control" name="jml" value="{{$produksi->jml}}">
                         </div>
                     </div>	
                     <button type="submit" class="btn btn-danger mt-2" class="text-right" style="float: right;">Save</button>

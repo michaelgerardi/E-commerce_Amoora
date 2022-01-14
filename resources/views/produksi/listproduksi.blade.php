@@ -31,7 +31,7 @@
                             <td class="text-center">{{$row->model}}</td>
                             <td class="text-center">{{$row->jml}}</td>
                             <td class="text-center">
-                                <a href="{{route('adminvieweditsampling',['id' => $row->id])}}" class="btn btn-primary">Detail</a>
+                                <a href="{{route('admineditproduksi',['id' => $row->id])}}" class="btn btn-primary">Detail</a>
                                 <a type="button" class="btn btn-danger" href="{{route('admindelS',['id' => $row->id])}}">Delete</a>
                                 <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal{{$loop->iteration}}">
                                     Set Status
