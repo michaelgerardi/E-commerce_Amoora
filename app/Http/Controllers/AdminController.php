@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Slot_S;
 use App\Models\Slot_P;
 use App\Models\Sampling;
+use App\Models\Produksi;
 use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
@@ -164,9 +165,61 @@ class AdminController extends Controller
         $Slot_P->save();
         return redirect()->route('viewslotproduksi');
     }
+
+    public function vieweditslotproduksi($id)
+    {
+        $slot=Slot_P::where('id','=', $id)->first();
+        return view('produksi.editslotproduksi',compact('slot'));
+    }
+
+    public function saveeditslotP(Request $request)
+    {
+        $this->validate($request, [
+            'title' => 'required',
+            'mulai' => 'required',
+            'selesai' => 'required'      
+        ]);
+        if($request->status==null){
+            $status=0;
+        }else{
+            $status=1;
+        }
+        Slot_P::where('id', $request->id)->update([
+            'title' => $request->title,
+            'mulai' => $request->mulai,
+            'selesai' => $request->selesai,
+            'status' => $status
+            
+        ]);
+        return redirect()->route('viewslotproduksi');
+       
+        
+    }
+
     public function viewslistproduksi()
     {
-        $sampling=Sampling::all();
-        return view('produksi.listproduksi',compact('sampling'));
+        $produksi=Produksi::all();
+        return view('produksi.listproduksi',compact('produksi'));
+    }
+
+    public function vieweditproduksi($id)
+    {
+        $produksi=Produksi::where([
+            ['id','=', $id],
+        ])->first();
+        return view('produksi.admineditproduksi',compact('produksi'));
+    }
+
+    public function saveeditprod(Request $request)
+    {
+        $this->validate($request,[
+            'desc' => 'required',
+            'jml' => 'required' 
+        ]);
+        Produksi::where('id',$request->id)->update([
+            'desc' => $request->desc,
+            'jml' => $request->jml
+        ]);
+        return redirect()->route('viewslistproduksi');
     }
 }

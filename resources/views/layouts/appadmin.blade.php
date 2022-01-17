@@ -42,6 +42,9 @@
                     <li class="nav-item">
                         <a class="nav-link active" href="{{route('viewslotproduksi')}}">Slot Produksi</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{route('viewslistproduksi')}}">List Produksi</a>
+                    </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

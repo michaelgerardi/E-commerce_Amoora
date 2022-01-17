@@ -24,14 +24,14 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($sampling as $row)
+                        @foreach($produksi as $row)
                         <tr>
                             <td class="text-center">{{DB::table('users')->where('id', $row->cus_id)->value('name')}}</td>
                             <td class="text-center">{{DB::table('slot_s')->where('id', $row->slot_id)->value('mulai')}} s/d {{DB::table('slot_s')->where('id', $row->slot_id)->value('selesai')}}</td>
                             <td class="text-center">{{$row->model}}</td>
                             <td class="text-center">{{$row->jml}}</td>
                             <td class="text-center">
-                                <a href="{{route('adminvieweditsampling',['id' => $row->id])}}" class="btn btn-primary">Detail</a>
+                                <a href="{{route('admineditproduksi',['id' => $row->id])}}" class="btn btn-primary">Detail</a>
                                 <a type="button" class="btn btn-danger" href="{{route('admindelS',['id' => $row->id])}}">Delete</a>
                                 <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal{{$loop->iteration}}">
                                     Set Status
@@ -44,7 +44,7 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        Ubah Status Sampling
+                                        Ubah Status produksi
                                     <form method="post" action="{{route('statusSampling')}}" enctype='multipart/form-data'>
                                     @csrf
                                     <input type="hidden" name="id" value="{{$row->id}}">
