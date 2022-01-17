@@ -70,7 +70,7 @@
                                 <a type="button" class="btn btn-success" href="{{route('vieweditslotsampling',['id' => $row->id])}}">Edit</a>
                                 <a type="button" class="btn btn-danger" href="{{route('delslotS',['id' => $row->id])}}">Delete</a>
                             </td>
-                        </tr>
+                        </tr> 
                         @endforeach
                     </tbody>
                 </table>
