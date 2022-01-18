@@ -44,6 +44,8 @@ Route::get('/admin/editslotproduksi/{id}', [App\Http\Controllers\AdminController
 Route::get('/admin/listproduksi', [App\Http\Controllers\AdminController::class, 'viewslistproduksi'])->name('viewslistproduksi');
 route::get('/admin/produksi/edit/{id}', [App\Http\Controllers\AdminController::class, 'vieweditproduksi'])->name('admineditproduksi');
 Route::post('/admin/produksi/edit/save', [App\Http\Controllers\AdminController::class, 'saveeditprod'])->name('adminsaveeditprod');
+Route::post('/admin/editproduksi/statusProduksi', [App\Http\Controllers\AdminController::class, 'statusprod'])->name('statusprod');
+
 //customer//
     //sampling//
 Route::get('/sampling', [App\Http\Controllers\UserController::class, 'viewsampling'])->name('viewsampling');

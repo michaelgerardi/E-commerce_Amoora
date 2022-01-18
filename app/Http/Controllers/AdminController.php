@@ -7,6 +7,7 @@ use App\Models\Slot_S;
 use App\Models\Slot_P;
 use App\Models\Sampling;
 use App\Models\Produksi;
+use PDF;
 use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
@@ -222,4 +223,26 @@ class AdminController extends Controller
         ]);
         return redirect()->route('viewslistproduksi');
     }
+    public function statusProd(Request $request)
+    {
+        Produksi::where('id', $request->id)->update([
+            'status' => $request->status
+        ]);
+        return redirect()->route('viewslistproduksi'); 
+    }
+
+    public function lihatinvoicesampling()
+    {
+        $pdf = PDF::loadview('/pdf/invoice')->setpaper('Legal','potrait');
+        return $pdf->stream('invoice');
+    }
+
+    public function verifbuktibyr(Request $request)
+    {
+        Pembayaran::where('id',$request->id)->update([
+            'status' => 2
+        ]);
+        return redirect()->back();
+    }
+
 }

@@ -261,4 +261,29 @@ class UserController extends Controller
         ]);
         return redirect()->route('viewproduksi');
     }
+
+    public function inputbuktibyr(Request $request)
+    {
+        $id=Auth::user()->id;
+        $this->validate($request, [
+            'jenis_pembayaran' => 'required',   
+        ]);
+        if($request->img_bukti){
+            $fullname = $request->file('img_bukti')->getClientOriginalName();
+            $extn =$request->file('img_bukti')->getClientOriginalExtension();
+            $finalS=$id.'buktibayar'.'_'.time().'.'.$extn;
+            $path = $request->file('img_bukti')->storeAs('public/buktibayar', $finalS);
+            Pembayaran::where('id',$request->id)->update([
+                'jenis_pembayaran' => $request->jenis_pembayaran,
+                'img_bukti' => $finalS,
+                'status' => 1,
+            ]);
+        }else{
+            Pembayaran::where('id',$request->id)->update([
+                'jenis_pembayaran' => $request->jenis_pembayaran,
+                'status' => 1,
+            ]);
+        }
+        return redirect()->back();
+    }
 }

@@ -33,6 +33,8 @@
                             <td class="text-center">
                                 <a href="{{route('admineditproduksi',['id' => $row->id])}}" class="btn btn-primary">Detail</a>
                                 <a type="button" class="btn btn-danger" href="{{route('admindelS',['id' => $row->id])}}">Delete</a>
+                                <a type="button" class="btn btn-danger" href="{{route('admindelS',['id' => $row->id])}}">Lihat Invoice</a>
+                                <a type="button" class="btn btn-danger" href="{{route('admindelS',['id' => $row->id])}}">Kirim Invoice</a>
                                 <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal{{$loop->iteration}}">
                                     Set Status
                                 </button>
@@ -45,7 +47,7 @@
                                     </div>
                                     <div class="modal-body">
                                         Ubah Status produksi
-                                    <form method="post" action="{{route('statusSampling')}}" enctype='multipart/form-data'>
+                                    <form method="post" action="{{route('statusprod')}}" enctype='multipart/form-data'>
                                     @csrf
                                     <input type="hidden" name="id" value="{{$row->id}}">
                                     <select class="form-select" name="status" aria-label="Default select example">
