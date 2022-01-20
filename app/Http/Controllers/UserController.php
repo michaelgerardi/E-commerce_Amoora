@@ -8,6 +8,7 @@ use App\Models\Slot_P;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Sampling;
 use App\Models\Produksi;
+use App\Models\Konsul;
 use Auth;
 class UserController extends Controller
 {
@@ -32,6 +33,9 @@ class UserController extends Controller
         $samplingS=Sampling::where([
             ['cus_id','=', $id],
             ['status','=', '4'],
+        ])->orwhere([
+            ['cus_id','=', $id],
+            ['status','=', '5'],
         ])->get();
         return view('sampling.pengajuansampling',compact('slot','sampling','samplingS'));
         //return $slot;
@@ -281,6 +285,46 @@ class UserController extends Controller
         }else{
             Pembayaran::where('id',$request->id)->update([
                 'jenis_pembayaran' => $request->jenis_pembayaran,
+                'status' => 1,
+            ]);
+        }
+        return redirect()->back();
+    }
+
+    public function viewkonsul()
+    {
+        $id=Auth::user()->id;
+        $id_prod=Produksi::where('cus_id',$id)->value('id');
+        $id_samp=Sampling::where('cus_id',$id)->value('id');
+        $jadwal = Konsul::where([
+            ['status','1'],
+            ['prod_id',$id_prod],
+            ])->orwhere([
+            ['status','1'],
+            ['prod_id',$id_samp],
+        ])->get();
+        //return view('');
+    }
+
+    public function viewpilihkonsul()
+    {
+        $jadwal = Konsul::where('status','0')->get();
+        //return view('');
+    }
+
+    public function pilihkonsul(Request $request)
+    {
+        $this->validate($request, [
+            'id' => 'required',   
+        ]);
+        if($request->tipe==0){
+            Konsul::where('id',$request->id)->update([
+                'samp_id' => $request->jasa_id,
+                'status' => 1,
+            ]);
+        }elseif($request->tipe==0){
+            Konsul::where('id',$request->id)->update([
+                'prod_id' => $request->jasa_id,
                 'status' => 1,
             ]);
         }

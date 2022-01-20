@@ -244,5 +244,32 @@ class AdminController extends Controller
         ]);
         return redirect()->back();
     }
+    public function viewjadwalkonsul()
+    {
+        $jadwal = Konsul::where('status','1')->get();
+        //return view('');
+    }
+    public function viewformtambahkonsul()
+    {
+        $id_admin=Auth::$user->id;
+        //return view('');
+    }
+    public function tambahkonsul()
+    {
+        
+        $this->validate($request, [
+            'title' => 'required',
+            'tgl' => 'required',
+            'mulai' => 'required', 
+        ]);
+        $konsul= new Konsul([
+            'title' => $request->title,
+            'tgl' => $request->tgl,
+            'mulai' => $request->mulai,
+            'status' =>'0'
+        ]);
+        $konsul->save();
+        return redirect()->back();
+    }
 
 }

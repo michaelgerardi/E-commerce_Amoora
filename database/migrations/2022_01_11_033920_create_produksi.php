@@ -21,10 +21,10 @@ class CreateProduksi extends Migration
                 $table->unsignedBigInteger('admin_id')->nullable();
                 $table->unsignedBigInteger('bayar_id')->nullable();
                 $table->text('desc');
-                $table->tinyInteger('jml');
+                $table->unsignedSmallInteger('jml');
                 $table->char('status', 1);
                 $table->timestamps();
-                $table->foreign('slot_id')->references('id')->on('slot_s');
+                $table->foreign('slot_id')->references('id')->on('slot_p');
                 $table->foreign('cus_id')->references('id')->on('users');
                 $table->foreign('samp_id')->references('id')->on('sampling');
                 $table->foreign('bayar_id')->references('id')->on('pembayaran');

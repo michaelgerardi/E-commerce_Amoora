@@ -5,7 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class konsul extends Model
+class Konsul extends Model
 {
-    use HasFactory;
+    protected $fillable = [
+        'samp_id','prod_id','title','tgl','mulai','status',
+    ];
+    protected $table="konsul";
 }
