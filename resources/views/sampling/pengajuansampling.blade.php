@@ -184,8 +184,8 @@
                         <div class="row row-cols-1 row-cols-md-3 g-4">
                             @foreach($sampling as $row)
                             <div class="col">
-                                <div class="card">
-                                <img src="/storage/imgsampling/{{$row->img}}" width='300' height='300' class="" alt="...">
+                                <div class="card h-100">
+                                <img src="/storage/imgsampling/{{$row->img}}" width='300' height='300' class="card-img-top" alt="...">
                                 <div class="card-body">
                                     <h5 class="card-title">{{DB::table('slot_s')->where('id', $row->slot_id)->value('mulai')}} s/d {{DB::table('slot_s')->where('id', $row->slot_id)->value('selesai')}} 
                                         @if($row->status == 0)
@@ -206,7 +206,7 @@
                                 </div>
                             </div> 
                             @endforeach
-                        </div>
+                    </div>
                     </div>
                 </div>
             </div>
