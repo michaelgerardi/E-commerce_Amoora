@@ -13,7 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
+//coba//
+Route::get('/coba', [App\Http\Controllers\HomeController::class, 'indexcoba'])->name('indexcoba');
 
 Auth::routes();
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home1');

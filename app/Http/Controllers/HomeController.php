@@ -22,4 +22,8 @@ class HomeController extends Controller
     {
         return view('home');
     }
+    public function indexcoba()
+    {
+        return view('coba');
+    }
 }
