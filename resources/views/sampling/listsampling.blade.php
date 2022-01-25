@@ -33,10 +33,10 @@
                             <td class="text-center">
                                 <a href="{{route('adminvieweditsampling',['id' => $row->id])}}" class="btn btn-primary">Detail</a>
                                 <a type="button" class="btn btn-danger" href="{{route('admindelS',['id' => $row->id])}}">Delete</a>
-                                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal{{$loop->iteration}}">
+                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModalLong{{$loop->iteration}}">
                                     Set Status
                                 </button>
-                                <div class="modal fade" id="exampleModal{{$loop->iteration}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal fade" id="exampleModalLong{{$loop->iteration}}">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                     <div class="modal-header">

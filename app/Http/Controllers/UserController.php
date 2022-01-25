@@ -118,17 +118,59 @@ class UserController extends Controller
             'model' => $request->model,
             'img' => $finalS,
             'desc' => $request->desc,
-            'jml' => $request->jml
+            'jml' => $request->jml,
+            'ling_b' => $request->ling_b,
+            'ling_pgang' => $request->ling_pgang,
+            'ling_pingl' => $request->ling_pingl,
+            'ling_lh' => $request->ling_lh,
+            'leb_bahu' => $request->leb_bahu,
+            'pj_lengan' => $request->pj_lengan,
+            'ling_kr_leng' => $request->ling_kr_leng,
+            'ling_lengan' => $request->ling_lengan,
+            'ling_pergel' => $request->ling_pergel,
+            'leb_muka' => $request->leb_muka,
+            'leb_pungg' => $request->leb_pungg,
+            'panj_pungg' => $request->panj_pungg,
+            'panj_baju' => $request->panj_baju,
+            'tinggi_pingl' => $request->tinggi_pingl,
+            'ling_pinggang' => $request->ling_pinggang,
+            'ling_pesak' => $request->ling_pesak,
+            'ling_paha' => $request->ling_paha,
+            'ling_lutut' => $request->ling_lutut,
+            'ling_kaki' => $request->ling_kaki,
+            'panj_cln_rok' => $request->panj_cln_rok,
+            'tingg_dudk' => $request->tingg_dudk,
             
         ]);
         }else{
             Sampling::where('id', $request->id)->update([
                 'model' => $request->model,
                 'desc' => $request->desc,
-                'jml' => $request->jml
-                
+                'jml' => $request->jml,
+                'ling_b' => $request->ling_b,
+                'ling_pgang' => $request->ling_pgang,
+                'ling_pingl' => $request->ling_pingl,
+                'ling_lh' => $request->ling_lh,
+                'leb_bahu' => $request->leb_bahu,
+                'pj_lengan' => $request->pj_lengan,
+                'ling_kr_leng' => $request->ling_kr_leng,
+                'ling_lengan' => $request->ling_lengan,
+                'ling_pergel' => $request->ling_pergel,
+                'leb_muka' => $request->leb_muka,
+                'leb_pungg' => $request->leb_pungg,
+                'panj_pungg' => $request->panj_pungg,
+                'panj_baju' => $request->panj_baju,
+                'tinggi_pingl' => $request->tinggi_pingl,
+                'ling_pinggang' => $request->ling_pinggang,
+                'ling_pesak' => $request->ling_pesak,
+                'ling_paha' => $request->ling_paha,
+                'ling_lutut' => $request->ling_lutut,
+                'ling_kaki' => $request->ling_kaki,
+                'panj_cln_rok' => $request->panj_cln_rok,
+                'tingg_dudk' => $request->tingg_dudk,
             ]); 
         }
+        //return $request;
         return redirect()->route('viewsampling');
        
         
@@ -257,7 +299,27 @@ class UserController extends Controller
             'img' => $finalS,
             'desc' => $request->desc,
             'status' => 5,
-            
+            'ling_b' => $request->ling_b,
+            'ling_pgang' => $request->ling_pgang,
+            'ling_pingl' => $request->ling_pingl,
+            'ling_lh' => $request->ling_lh,
+            'leb_bahu' => $request->leb_bahu,
+            'pj_lengan' => $request->pj_lengan,
+            'ling_kr_leng' => $request->ling_kr_leng,
+            'ling_lengan' => $request->ling_lengan,
+            'ling_pergel' => $request->ling_pergel,
+            'leb_muka' => $request->leb_muka,
+            'leb_pungg' => $request->leb_pungg,
+            'panj_pungg' => $request->panj_pungg,
+            'panj_baju' => $request->panj_baju,
+            'tinggi_pingl' => $request->tinggi_pingl,
+            'ling_pinggang' => $request->ling_pinggang,
+            'ling_pesak' => $request->ling_pesak,
+            'ling_paha' => $request->ling_paha,
+            'ling_lutut' => $request->ling_lutut,
+            'ling_kaki' => $request->ling_kaki,
+            'panj_cln_rok' => $request->panj_cln_rok,
+            'tingg_dudk' => $request->tingg_dudk,
         ]);
         $Sampling->save();
         $samplingid=Sampling::where([
@@ -272,7 +334,10 @@ class UserController extends Controller
         $produksi=Produksi::where([
             ['id','=', $id],
         ])->first();
-        return view('produksi.editproduksi',compact('produksi'));
+        $sampling=Sampling::where([
+            ['id','=', $id],
+        ])->first();
+        return view('produksi.editproduksi',compact('produksi','sampling'));
     }
 
     public function saveeditprod(Request $request)

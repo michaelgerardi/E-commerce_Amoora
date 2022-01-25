@@ -3,70 +3,187 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-12">
-        
-        <div class="card">
-                <div class="card-header">Form Set Slot</div>
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-                    <div class="row">
-                    <div class="col-md-8">
+    <div class="col-12 mt-5">
+                <div class="card">
+                    <div class="card-body">
+                        @if (session('status'))
+                            <div class="alert alert-success" role="alert">
+                                {{ session('status') }}
+                            </div>
+                        @endif
                         <form method="post" action="{{route('saveeditS')}}" enctype='multipart/form-data'>
                             @csrf
                             <input type="hidden" name="id" value="{{$sampling->id}}">
-                        <div class="form-group row">
-                            <label class="control-label col-sm-2" for="nik">Slot</label>
-                            <div class="col-sm-10">
-                            <select class="form-control" name="slot_id" disabled>
-                                <option value="{{$sampling->slot_id}}">{{DB::table('slot_s')->where('id', $sampling->slot_id)->value('mulai')}} sampai {{DB::table('slot_s')->where('id', $sampling->slot_id)->value('selesai')}}</option>
-                            </select>
+                            <h4 class="header-title">Textual inputs</h4>
+                            <p class="text-muted font-14 mb-4">Here are examples of <code>.form-control</code> applied to each textual HTML5 <code>&lt;input&gt;</code> <code>type</code>.</p>
+                            <div class="row mb-3">
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <label class="col-form-label">Slot</label>
+                                        <select class="custom-select" name="slot_id" disabled>
+                                            <option value="{{$sampling->slot_id}}">{{DB::table('slot_s')->where('id', $sampling->slot_id)->value('mulai')}} sampai {{DB::table('slot_s')->where('id', $sampling->slot_id)->value('selesai')}}</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-form-label">Model</label>
+                                        <select class="custom-select" name="model">
+                                            <option selected value="0">rok</option @if($sampling->model==0) selected @endif>
+                                            <option selected value="1">dress</option @if($sampling->model==1) selected @endif>
+                                            <option selected value="2">top</option @if($sampling->model==2) selected @endif>
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">Deskripsi</span>
+                                        </div>
+                                        <textarea class="form-control" aria-label="With textarea" name="desc">{{$sampling->desc}}</textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="example-number-input" class="col-form-label">Jumlah Sampling</label>
+                                        <input class="form-control" type="number" onkeypress="return event.charCode >= 48 && event.charCode <=57" name="jml" value="{{$sampling->jml}}">
+                                    </div>
+                                        <label class="control-label" for="ftktp">Upload Image *</label>
+                                        <input type="file" class="form-control-file" name="img_model">
+                                </div>
+                                <div class="col-md-4">
+                                    <img src="/storage/imgsampling/{{$sampling->img}}" height='350' class="card-img-top" alt="...">
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="control-label col-sm-2" for="nik">Model</label>
-                            <div class="col-sm-10">
-                            <select class="form-control" name="model">
-        
-                                <option selected value="0">rok</option @if($sampling->model==0) selected @endif>
-                                <option selected value="1">dress</option @if($sampling->model==1) selected @endif>
-                                <option selected value="2">top</option @if($sampling->model==2) selected @endif>
+                            <div class="row col-sm-12">
+                                <div class="form-group col-sm-6">
+                                    <label for="example-text-input" class="col-form-label">Lingkar Badan</label>
+                                    <input class="form-control" type="text" value="{{$sampling->ling_b}}" name="ling_b" placeholder="Angka dalam Cm">
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <label for="example-text-input" class="col-form-label">Lingkar Pinggang</label>
+                                    <input class="form-control" type="text" value="{{$sampling->ling_pgang}}" name="ling_pgang">
+                                </div>
+
+                            </div>
+                            <div class="row col-sm-12">
+                                <div class="form-group col-sm-6">
+                                    <label for="example-text-input" class="col-form-label">Lingkar Pinggul</label>
+                                    <input class="form-control" type="text" value="{{$sampling->ling_pingl}}" name="ling_pingl">
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <label for="example-text-input" class="col-form-label">Lingkar leher</label>
+                                    <input class="form-control" type="text" value="{{$sampling->ling_lh}}" name="ling_lh">
+                                </div>
+
+                            </div>
+                            <div class="row col-sm-12">
+                                <div class="form-group col-sm-6">
+                                    <label for="example-text-input" class="col-form-label">Lebar Bahu</label>
+                                    <input class="form-control" type="text" value="{{$sampling->leb_bahu}}" name="leb_bahu">
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <label for="example-text-input" class="col-form-label">Panjang Lengan</label>
+                                    <input class="form-control" type="text" value="{{$sampling->pj_lengan}}" name="pj_lengan">
+                                </div>
+
+                            </div>
+                            <div class="row col-sm-12">
+                                <div class="form-group col-sm-6">
+                                    <label for="example-text-input" class="col-form-label">Lingkar Kerung Lengan</label>
+                                    <input class="form-control" type="text" value="{{$sampling->ling_kr_leng}}" name="ling_kr_leng">
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <label for="example-text-input" class="col-form-label">Lingkar Lengan</label>
+                                    <input class="form-control" type="text" value="{{$sampling->ling_lengan}}" name="ling_lengan">
+                                </div>
+
+                            </div>
+                            <div class="row col-sm-12">
+                                <div class="form-group col-sm-6">
+                                    <label for="example-text-input" class="col-form-label">Lingkar Pergelangan</label>
+                                    <input class="form-control" type="text" value="{{$sampling->ling_pergel}}" name="ling_pergel">
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <label for="example-text-input" class="col-form-label">Lebar Muka</label>
+                                    <input class="form-control" type="text" value="{{$sampling->leb_muka}}" name="leb_muka">
+                                </div>
+
+                            </div>
+                            <div class="row col-sm-12">
+                                <div class="form-group col-sm-6">
+                                    <label for="example-text-input" class="col-form-label">Lebar Punggung</label>
+                                    <input class="form-control" type="text" value="{{$sampling->leb_pungg}}" name="leb_pungg">
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <label for="example-text-input" class="col-form-label">Panjang Punggung</label>
+                                    <input class="form-control" type="text" value="{{$sampling->panj_pungg}}" name="panj_pungg">
+                                </div>
+
+                            </div>
+                            <div class="row col-sm-12">
+                                <div class="form-group col-sm-6">
+                                    <label for="example-text-input" class="col-form-label">Panjang Baju</label>
+                                    <input class="form-control" type="text" value="{{$sampling->panj_baju}}" name="panj_baju">
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <label for="example-text-input" class="col-form-label">Tinggi pinggul</label>
+                                    <input class="form-control" type="text" value="{{$sampling->tinggi_pingl}}" name="tinggi_pingl">
+                                </div>
+
+                            </div>
+                            <div class="row col-sm-12">
+                                <div class="form-group col-sm-6">
+                                    <label for="example-text-input" class="col-form-label">Lingkar Pinggang</label>
+                                    <input class="form-control" type="text" value="{{$sampling->ling_pinggang}}" name="ling_pinggang">
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <label for="example-text-input" class="col-form-label">Lingkar Pesak</label>
+                                    <input class="form-control" type="text" value="{{$sampling->ling_pesak}}" name="ling_pesak">
+                                </div>
+
+                            </div>
+                            <div class="row col-sm-12">
+                                <div class="form-group col-sm-6">
+                                    <label for="example-text-input" class="col-form-label">Lingkar Paha</label>
+                                    <input class="form-control" type="text" value="{{$sampling->ling_paha}}" name="ling_paha">
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <label for="example-text-input" class="col-form-label">Lingkar Lutut</label>
+                                    <input class="form-control" type="text" value="{{$sampling->ling_lutut}}" name="ling_lutut">
+                                </div>
+
+                            </div>
+                            <div class="row col-sm-12">
+                                <div class="form-group col-sm-6">
+                                    <label for="example-text-input" class="col-form-label">Lingkar Kaki</label>
+                                    <input class="form-control" type="text" value="{{$sampling->ling_kaki}}" name="ling_kaki">
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <label for="example-text-input" class="col-form-label">Panjang Celana</label>
+                                    <input class="form-control" type="text" value="{{$sampling->panj_cln_rok}}" name="panj_cln_rok">
+                                </div>
+
+                            </div>
+                            <div class="row col-sm-12">
+                                <div class="form-group col-sm-6">
+                                    <label for="example-text-input" class="col-form-label">Tinggi Duduk</label>
+                                    <input class="form-control" type="text" value="{{$sampling->tingg_dudk}}" name="tingg_dudk">
+                                </div>
+                                <div class="form-group col-sm-6">
+                                <label class="control-label" for="ftktp">Upload Image *</label>
+                                <div class="col-sm-10">
+                                <input type="file" class="form-control-file" name="img_model">
+                                </div>
+                            </div>
                             
-                            </select>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="control-label col-sm-2" for="nik">Deskripsi</label>
-                            <div class="col-sm-10">
-                                <textarea class="form-control" name="desc">{{$sampling->desc}}</textarea>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="control-label col-sm-2" for="nik">Jumlah Sampling</label>
-                            <div class="col-sm-10">
-                                <input type="number" class="form-control" name="jml" value="{{$sampling->jml}}">
-                            </div>
-                        </div>	
-                        <div class="form-group row">
-                            <label class="control-label col-sm-2" for="ftktp">Upload Image *</label>
-                            <div class="col-sm-10">
-                            <input type="file" class="form-control-file" name="img_model">
-                        </div>
-                        
+                            
+                            <button type="submit" class="btn btn-danger" class="text-right" style="float: right;">Save</button>
+                        </form>
                     </div>
-                    
-                    <button type="submit" class="btn btn-danger" class="text-right" style="float: right;">Save</button>
-                </form>
+                </div>
+                </div>
             </div>
-            <div class="col-md-4">
-                    <img src="/storage/imgsampling/{{$sampling->img}}" height='350' class="card-img-top" alt="...">
-            </div>
-                    </div>
-            </div>
+            
+        
+        
+        
             
         </div>
     </div>
