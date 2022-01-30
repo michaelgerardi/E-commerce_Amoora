@@ -19,6 +19,7 @@ class CreateSlotP extends Migration
             $table->date('mulai');
             $table->date('selesai');
             $table->tinyInteger('jml')->default('0');
+            $table->tinyInteger('kuota');
             $table->char('status', 1);
             $table->timestamps();
         });
@@ -31,6 +32,7 @@ class CreateSlotP extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('slot_p');
     }
 }

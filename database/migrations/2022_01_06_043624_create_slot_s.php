@@ -19,6 +19,7 @@ class CreateSlotS extends Migration
             $table->date('mulai');
             $table->date('selesai');
             $table->tinyInteger('jml')->default('0');
+            $table->tinyInteger('kuota');
             $table->char('status', 1);
             $table->timestamps();
             

@@ -12,13 +12,37 @@
                                 {{ session('status') }}
                             </div>
                         @endif
+                        @if(count($errors) > 0)
+                        <div class="alert alert-danger">
+                            <ul>
+                            @foreach($errors->all() as $error)
+                            <li>{{$error}}</li>
+                            @endforeach
+                            </ul>
+                            </div>
+                        @endif
+
+                        @if(\Session::has('success'))
+                            <div class="alert alert-success">
+                                <p>{{\Session::get('success')}}</p>
+                            </div>
+                        @endif
+
+                        @if(\Session::has('Forbidden'))
+                            <div class="alert alert-danger">
+                                <p>{{\Session::get('Forbidden')}}</p>
+                            </div>
+                        @endif
                         <form method="post" action="{{route('saveeditS')}}" enctype='multipart/form-data'>
                             @csrf
                             <input type="hidden" name="id" value="{{$sampling->id}}">
                             <h4 class="header-title">Textual inputs</h4>
                             <p class="text-muted font-14 mb-4">Here are examples of <code>.form-control</code> applied to each textual HTML5 <code>&lt;input&gt;</code> <code>type</code>.</p>
                             <div class="row mb-3">
-                                <div class="col-md-8">
+                            <div class="col-md-4 col-sm-4">
+                                <img src="/storage/imgsampling/{{$sampling->img}}" height='350' class="card-img-top" alt="...">
+                            </div>
+                                <div class="col-md-8 col-sm-8">
                                     <div class="form-group">
                                         <label class="col-form-label">Slot</label>
                                         <select class="custom-select" name="slot_id" disabled>
@@ -44,12 +68,6 @@
                                         <label for="example-number-input" class="col-form-label">Jumlah Sampling</label>
                                         <input class="form-control" type="number" onkeypress="return event.charCode >= 48 && event.charCode <=57" name="jml" value="{{$sampling->jml}}">
                                     </div>
-                                        <label class="control-label" for="ftktp">Upload Image *</label>
-                                        <input type="file" class="form-control-file" name="img_model">
-                                </div>
-                                <div class="col-md-4">
-                                    <img src="/storage/imgsampling/{{$sampling->img}}" height='350' class="card-img-top" alt="...">
-                                </div>
                             </div>
                             <div class="row col-sm-12">
                                 <div class="form-group col-sm-6">
@@ -173,11 +191,12 @@
                                 </div>
                             </div>
                             
-                            
                             <button type="submit" class="btn btn-danger" class="text-right" style="float: right;">Save</button>
                         </form>
                     </div>
+                    
                 </div>
+                
                 </div>
             </div>
             

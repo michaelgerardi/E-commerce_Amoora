@@ -7,7 +7,7 @@
         <div class="card mb-3">
             <div class="row g-0">
                 <div class="col-md-4">
-                <img src="/storage/imgsampling/{{$sampling->img}}" class="img-fluid rounded-start" alt="...">
+                <img src="/storage/imgsampling/{{$sampling->img}}" class="img-fluid rounded-start ml-5 mt-3" alt="...">
                 </div>
                 <div class="col-md-8">
                 <div class="card-body">
@@ -26,7 +26,7 @@
                             <div class="card-header">
                                 <a class="card-link" data-toggle="collapse" href="#accordion21">Detail Ukuran</a>
                             </div>
-                            <div id="accordion21" class="collapse show" data-parent="#accordion2">
+                            <div id="accordion21" class="collapse" data-parent="#accordion2">
                                 <div class="card-body">
                                     
                                 <table class="table table-bordered text-center">
@@ -104,6 +104,27 @@
                             {{ session('status') }}
                         </div>
                     @endif
+                    @if(count($errors) > 0)
+                        <div class="alert alert-danger">
+                            <ul>
+                            @foreach($errors->all() as $error)
+                            <li>{{$error}}</li>
+                            @endforeach
+                            </ul>
+                            </div>
+                        @endif
+
+                        @if(\Session::has('success'))
+                            <div class="alert alert-success">
+                                <p>{{\Session::get('success')}}</p>
+                            </div>
+                        @endif
+
+                        @if(\Session::has('Forbidden'))
+                            <div class="alert alert-danger">
+                                <p>{{\Session::get('Forbidden')}}</p>
+                            </div>
+                        @endif
                     <form method="post" action="{{route('saveinputprod')}}" enctype='multipart/form-data'>
                         @csrf
                         <input type="hidden" class="form-control" name="samp_id" value="{{$sampling->id}}">

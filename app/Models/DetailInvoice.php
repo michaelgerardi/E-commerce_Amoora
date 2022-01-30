@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Slot_P extends Model
+class DetailInvoice extends Model
 {
     protected $fillable = [
-        'title','mulai','selesai','status','kuota',
+        'samp_id','prod_id','qty','ket','harga','total',
     ];
-    protected $table='slot_p';
+    protected $table="detail_invoice";
 }

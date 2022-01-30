@@ -46,6 +46,12 @@ Route::get('/admin/listproduksi', [App\Http\Controllers\AdminController::class, 
 route::get('/admin/produksi/edit/{id}', [App\Http\Controllers\AdminController::class, 'vieweditproduksi'])->name('admineditproduksi');
 Route::post('/admin/produksi/edit/save', [App\Http\Controllers\AdminController::class, 'saveeditprod'])->name('adminsaveeditprod');
 Route::post('/admin/editproduksi/statusProduksi', [App\Http\Controllers\AdminController::class, 'statusprod'])->name('statusprod');
+    //konsul//
+Route::get('/admin/setjadwal', [App\Http\Controllers\AdminController::class, 'viewformtambahkonsul'])->name('viewformtambahkonsul');
+Route::post('/admin/setjadwal/save', [App\Http\Controllers\AdminController::class, 'tambahkonsul'])->name('tambahkonsul');
+    //invoice//
+Route::get('/invoice/{id}/{jns}', [App\Http\Controllers\AdminController::class, 'lihatinvoicesampling'])->name('lihatinvoicesampling');
+Route::post('/invoice/additem', [App\Http\Controllers\AdminController::class, 'addinvoice'])->name('addinvoice');
 
 //customer//
     //sampling//
@@ -64,6 +70,10 @@ Route::post('/produksi/input/save', [App\Http\Controllers\UserController::class,
 Route::post('/produksi/edit/save', [App\Http\Controllers\UserController::class, 'saveeditprod'])->name('saveeditprod');
 Route::get('/produksi/custom/samp', [App\Http\Controllers\UserController::class, 'viewcussampproduksi'])->name('viewcussampproduksi');
 Route::post('/produksi/custom/samp/save', [App\Http\Controllers\UserController::class, 'savesamplingcustom'])->name('savesamplingcustom');
+    //konsul//
+Route::get('/konsul', [App\Http\Controllers\UserController::class, 'viewkonsul'])->name('viewkonsul');
+Route::get('/konsul/input/{id}', [App\Http\Controllers\UserController::class, 'viewpilihkonsul'])->name('viewpilihkonsul');
+Route::post('/konsul/input/save', [App\Http\Controllers\UserController::class, 'pilihkonsul'])->name('pilihkonsul');   
 
 // Route::group(['middleware' => ['auth:admin']], function () {
 //     Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');

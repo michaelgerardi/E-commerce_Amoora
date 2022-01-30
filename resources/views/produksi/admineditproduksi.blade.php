@@ -37,6 +37,27 @@
                             {{ session('status') }}
                         </div>
                     @endif
+                    @if(count($errors) > 0)
+                        <div class="alert alert-danger">
+                            <ul>
+                            @foreach($errors->all() as $error)
+                            <li>{{$error}}</li>
+                            @endforeach
+                            </ul>
+                            </div>
+                        @endif
+
+                        @if(\Session::has('success'))
+                            <div class="alert alert-success">
+                                <p>{{\Session::get('success')}}</p>
+                            </div>
+                        @endif
+
+                        @if(\Session::has('Forbidden'))
+                            <div class="alert alert-danger">
+                                <p>{{\Session::get('Forbidden')}}</p>
+                            </div>
+                        @endif
                     <form method="post" action="{{route('adminsaveeditprod')}}" enctype='multipart/form-data'>
                         @csrf
                         <input type="hidden" class="form-control" name="id" value="{{$produksi->id}}">

@@ -42,55 +42,60 @@ class UserController extends Controller
     }
     public function savesampling(Request $request)
     {
-        $id=Auth::user()->id;
-        $this->validate($request, [
-            'slot_id' => 'required',
-            'model' => 'required',
-            'img_model' => 'required',
-            'desc' => 'required',
-            'jml' => 'required'     
-        ]);
-        $fullname = $request->file('img_model')->getClientOriginalName();
-        $extn =$request->file('img_model')->getClientOriginalExtension();
-        $finalS=$id.$request->slot_id.'sampling'.'_'.time().'.'.$extn;
-        $path = $request->file('img_model')->storeAs('public/imgsampling', $finalS);
+        $jml=Slot_S::where('id', $request->slot_id)->value('jml');
+        $kuota=Slot_S::where('id', $request->slot_id)->value('kuota');
+        if($jml < $kuota){
+            $id=Auth::user()->id;
+            $this->validate($request, [
+                'slot_id' => 'required',
+                'model' => 'required',
+                'img_model' => 'required',
+                'desc' => 'required',
+                'jml' => 'required'     
+            ]);
+            $fullname = $request->file('img_model')->getClientOriginalName();
+            $extn =$request->file('img_model')->getClientOriginalExtension();
+            $finalS=$id.$request->slot_id.'sampling'.'_'.time().'.'.$extn;
+            $path = $request->file('img_model')->storeAs('public/imgsampling', $finalS);
 
-        $Sampling= new Sampling([
-            'slot_id' => $request->slot_id,
-            'cus_id' => $id,
-            'model' => $request->model,
-            'img' => $finalS,
-            'desc' => $request->desc,
-            'status' => 0,
-            'ling_b' => $request->ling_b,
-            'ling_pgang' => $request->ling_pgang,
-            'ling_pingl' => $request->ling_pingl,
-            'ling_lh' => $request->ling_lh,
-            'leb_bahu' => $request->leb_bahu,
-            'pj_lengan' => $request->pj_lengan,
-            'ling_kr_leng' => $request->ling_kr_leng,
-            'ling_lengan' => $request->ling_lengan,
-            'ling_pergel' => $request->ling_pergel,
-            'leb_muka' => $request->leb_muka,
-            'leb_pungg' => $request->leb_pungg,
-            'panj_pungg' => $request->panj_pungg,
-            'panj_baju' => $request->panj_baju,
-            'tinggi_pingl' => $request->tinggi_pingl,
-            'ling_pinggang' => $request->ling_pinggang,
-            'ling_pesak' => $request->ling_pesak,
-            'ling_paha' => $request->ling_paha,
-            'ling_lutut' => $request->ling_lutut,
-            'ling_kaki' => $request->ling_kaki,
-            'panj_cln_rok' => $request->panj_cln_rok,
-            'tingg_dudk' => $request->tingg_dudk,
-            'jml' => $request->jml,
+            $Sampling= new Sampling([
+                'slot_id' => $request->slot_id,
+                'cus_id' => $id,
+                'model' => $request->model,
+                'img' => $finalS,
+                'desc' => $request->desc,
+                'status' => 0,
+                'ling_b' => $request->ling_b,
+                'ling_pgang' => $request->ling_pgang,
+                'ling_pingl' => $request->ling_pingl,
+                'ling_lh' => $request->ling_lh,
+                'leb_bahu' => $request->leb_bahu,
+                'pj_lengan' => $request->pj_lengan,
+                'ling_kr_leng' => $request->ling_kr_leng,
+                'ling_lengan' => $request->ling_lengan,
+                'ling_pergel' => $request->ling_pergel,
+                'leb_muka' => $request->leb_muka,
+                'leb_pungg' => $request->leb_pungg,
+                'panj_pungg' => $request->panj_pungg,
+                'panj_baju' => $request->panj_baju,
+                'tinggi_pingl' => $request->tinggi_pingl,
+                'ling_pinggang' => $request->ling_pinggang,
+                'ling_pesak' => $request->ling_pesak,
+                'ling_paha' => $request->ling_paha,
+                'ling_lutut' => $request->ling_lutut,
+                'ling_kaki' => $request->ling_kaki,
+                'panj_cln_rok' => $request->panj_cln_rok,
+                'tingg_dudk' => $request->tingg_dudk,
+                'jml' => $request->jml,
+                
+            ]);
             
-        ]);
-        
-        $Sampling->save();
-        Slot_S::where('id', $request->slot_id)->increment('jml');
-        return redirect()->route('viewsampling');
-        // return $id;
+            $Sampling->save();
+            Slot_S::where('id', $request->slot_id)->increment('jml');
+            return redirect()->route('viewsampling');
+        }else{
+            return redirect()->back()->with('Forbidden','Maaf, kuota untuk slot ini sudah penuh. Silahkan memilih slot lain');
+        }
     }
     public function vieweditsampling($id)
     {
@@ -180,7 +185,9 @@ class UserController extends Controller
         $del=Sampling::where('id','=', $id)->value('img');
         $delpath='public/imgsampling/'.$del;
         Storage::delete($delpath);
+        $id_slot=Sampling::where('id', $id)->value('slot_id');
         Sampling::where('id', $id)->delete();
+        Slot_S::where('id', $id_slot)->decrement('jml');
         return redirect()->route('viewsampling');
     }
     public function revisisampling($id)
@@ -331,11 +338,14 @@ class UserController extends Controller
     }
     public function vieweditproduksi($id)
     {
+        $id_samp=Produksi::where([
+            ['id','=', $id],
+        ])->value('samp_id');
         $produksi=Produksi::where([
             ['id','=', $id],
         ])->first();
         $sampling=Sampling::where([
-            ['id','=', $id],
+            ['id','=', $id_samp],
         ])->first();
         return view('produksi.editproduksi',compact('produksi','sampling'));
     }
@@ -381,6 +391,8 @@ class UserController extends Controller
     public function viewkonsul()
     {
         $id=Auth::user()->id;
+        $produksi=Produksi::where('cus_id',$id)->get();
+        $sampling=Sampling::where('cus_id',$id)->get();
         $id_prod=Produksi::where('cus_id',$id)->value('id');
         $id_samp=Sampling::where('cus_id',$id)->value('id');
         $jadwal = Konsul::where([
@@ -390,13 +402,13 @@ class UserController extends Controller
             ['status','1'],
             ['prod_id',$id_samp],
         ])->get();
-        //return view('');
+        return view('konsul.pengajuankonsul',compact('sampling','produksi'));
     }
 
-    public function viewpilihkonsul()
+    public function viewpilihkonsul($id)
     {
         $jadwal = Konsul::where('status','0')->get();
-        //return view('');
+        return view('konsul.ambiljadwal',compact('jadwal','id'));
     }
 
     public function pilihkonsul(Request $request)

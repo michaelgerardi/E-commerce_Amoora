@@ -12,6 +12,27 @@
                                 {{ session('status') }}
                             </div>
                         @endif
+                        @if(count($errors) > 0)
+                        <div class="alert alert-danger">
+                            <ul>
+                            @foreach($errors->all() as $error)
+                            <li>{{$error}}</li>
+                            @endforeach
+                            </ul>
+                            </div>
+                        @endif
+
+                        @if(\Session::has('success'))
+                            <div class="alert alert-success">
+                                <p>{{\Session::get('success')}}</p>
+                            </div>
+                        @endif
+
+                        @if(\Session::has('Forbidden'))
+                            <div class="alert alert-danger">
+                                <p>{{\Session::get('Forbidden')}}</p>
+                            </div>
+                        @endif
                         <form method="post" action="{{route('savesamplingcustom')}}" enctype='multipart/form-data'>
                             @csrf
                             <h4 class="header-title ">Textual inputs</h4>
@@ -30,10 +51,6 @@
                                     <span class="input-group-text">Deskripsi</span>
                                 </div>
                                 <textarea class="form-control" aria-label="With textarea" name="desc"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label for="example-number-input" class="col-form-label">Jumlah Sampling</label>
-                                <input class="form-control" type="number" onkeypress="return event.charCode >= 48 && event.charCode <=57" name="jml" placeholder="">
                             </div>
                             <div class="row col-sm-12">
                                 <div class="form-group col-sm-6">
@@ -151,7 +168,7 @@
                                     <input class="form-control" type="text" value="" name="tingg_dudk">
                                 </div>
                                 <div class="form-group col-sm-6">
-                                <label class="control-label" for="ftktp">Upload Image *</label>
+                                <label class="control-label" for="ftktp">Upload Gambar Contoh Model*</label>
                                 <div class="col-sm-10">
                                 <input type="file" class="form-control-file" name="img_model">
                                 </div>

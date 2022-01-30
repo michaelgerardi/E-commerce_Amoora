@@ -75,6 +75,13 @@
                                             
                                         </ul>
                                     </li>
+                                    <li><a href="#" aria-expanded="true">Konsul</a>
+                                        <ul class="collapse">
+                                            <li><a href="{{route('viewformtambahkonsul')}}">Set Konsul</a></li>
+                                            <li><a href="{{route('viewslistproduksi')}}">List Produksi</a></li>
+                                            
+                                        </ul>
+                                    </li>
                                     
                                 </ul>
                             </li>

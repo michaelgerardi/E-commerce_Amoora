@@ -7,7 +7,11 @@ use App\Models\Slot_S;
 use App\Models\Slot_P;
 use App\Models\Sampling;
 use App\Models\Produksi;
+use App\Models\Konsul;
+use App\Models\User;
+use App\Models\DetailInvoice;
 use PDF;
+use Auth;
 use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
@@ -31,6 +35,7 @@ class AdminController extends Controller
         $this->validate($request, [
             'title' => 'required',
             'mulai' => 'required',
+            'kuota' => 'required',
             'selesai' => 'required'      
         ]);
 
@@ -38,6 +43,7 @@ class AdminController extends Controller
             'title' => $request->title,
             'mulai' => $request->mulai,
             'selesai' => $request->selesai,
+            'kuota' => $request->kuota,
             'status' => 1
             
         ]);
@@ -55,6 +61,7 @@ class AdminController extends Controller
         $this->validate($request, [
             'title' => 'required',
             'mulai' => 'required',
+            'kuota' => 'required',
             'selesai' => 'required'      
         ]);
         if($request->status==null){
@@ -66,6 +73,7 @@ class AdminController extends Controller
             'title' => $request->title,
             'mulai' => $request->mulai,
             'selesai' => $request->selesai,
+            'selesai' => $request->kuota,
             'status' => $status
             
         ]);
@@ -153,6 +161,7 @@ class AdminController extends Controller
         $this->validate($request, [
             'title' => 'required',
             'mulai' => 'required',
+            'kuota' => 'required',
             'selesai' => 'required'      
         ]);
 
@@ -160,6 +169,7 @@ class AdminController extends Controller
             'title' => $request->title,
             'mulai' => $request->mulai,
             'selesai' => $request->selesai,
+            'kuota' => $request->kuota,
             'status' => 1
             
         ]);
@@ -178,6 +188,7 @@ class AdminController extends Controller
         $this->validate($request, [
             'title' => 'required',
             'mulai' => 'required',
+            'kuota' => 'required',
             'selesai' => 'required'      
         ]);
         if($request->status==null){
@@ -189,6 +200,7 @@ class AdminController extends Controller
             'title' => $request->title,
             'mulai' => $request->mulai,
             'selesai' => $request->selesai,
+            'kuota' => $request->kuota,
             'status' => $status
             
         ]);
@@ -205,10 +217,16 @@ class AdminController extends Controller
 
     public function vieweditproduksi($id)
     {
+        $id_samp=Produksi::where([
+            ['id','=', $id],
+        ])->value('samp_id');
         $produksi=Produksi::where([
             ['id','=', $id],
         ])->first();
-        return view('produksi.admineditproduksi',compact('produksi'));
+        $sampling=Sampling::where([
+            ['id','=', $id_samp],
+        ])->first();
+        return view('produksi.admineditproduksi',compact('produksi','sampling'));
     }
 
     public function saveeditprod(Request $request)
@@ -231,7 +249,53 @@ class AdminController extends Controller
         return redirect()->route('viewslistproduksi'); 
     }
 
-    public function lihatinvoicesampling()
+    public function lihatinvoicesampling($id,$jns)
+    {
+        if($jns==0){
+            $sampling=Sampling::where('id',$id)->first();
+            $dataD=User::where('id',$sampling->cus_id)->first();
+            $invoice=DetailInvoice::where('samp_id',$sampling->id)->get();
+            $sum=DetailInvoice::where('samp_id',$sampling->id)->sum('total');
+        }else{
+            $produksi=Produksi::where('id',$id)->first();
+            $dataD=User::where('id',$produksi->cus_id)->first();
+            $invoice=DetailInvoice::where('prod_id',$produksi->id)->get();
+            $sum=DetailInvoice::where('samp_id',$sampling->id)->sum('total');
+        }
+        //return
+        return view('invoice.lihatinvoiceadm',compact('dataD','sampling','invoice','id','jns','sum'));
+    }
+    public function addinvoice(Request $request)
+    {
+        $this->validate($request, [
+            'qty' => 'required',
+            'ket' => 'required',
+            'harga' => 'required',
+            'total' => 'required'      
+        ]);
+        if( $request->jns==0){
+            $invoice= new DetailInvoice([
+                'samp_id' => $request->id,
+                'qty' => $request->qty,
+                'ket' => $request->ket,
+                'harga' => $request->harga,
+                'total' => $request->total
+                
+            ]);
+            $invoice->save();
+        }else{
+            $invoice= new DetailInvoice([
+                'prod_id' => $request->id,
+                'qty' => $request->qty,
+                'ket' => $request->ket,
+                'harga' => $request->harga,
+                'total' => $request->total
+            ]);
+            $invoice->save(); 
+        }
+        return redirect()->back();
+    }
+    public function generateinvoicesampling()
     {
         $pdf = PDF::loadview('/pdf/invoice')->setpaper('Legal','potrait');
         return $pdf->stream('invoice');
@@ -251,10 +315,10 @@ class AdminController extends Controller
     }
     public function viewformtambahkonsul()
     {
-        $id_admin=Auth::$user->id;
-        //return view('');
+        $id_admin=Auth::user()->id;
+        return view('konsul.setjadwal',compact('id_admin'));
     }
-    public function tambahkonsul()
+    public function tambahkonsul(Request $request)
     {
         
         $this->validate($request, [

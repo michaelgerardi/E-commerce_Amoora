@@ -63,6 +63,7 @@
                                 <ul class="collapse">
                                     <li><a href="{{route('viewsampling')}}">Sampling</a></li>
                                     <li><a href="{{route('viewproduksi')}}">Produksi</a></li>
+                                    <li><a href="{{route('viewkonsul')}}">konsul</a></li>
                                 </ul>
                             </li>
                             <!-- //////////////// -->

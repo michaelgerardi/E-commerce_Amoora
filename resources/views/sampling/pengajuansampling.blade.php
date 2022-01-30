@@ -13,10 +13,31 @@
                                 {{ session('status') }}
                             </div>
                         @endif
+                        @if(count($errors) > 0)
+                        <div class="alert alert-danger">
+                            <ul>
+                            @foreach($errors->all() as $error)
+                            <li>{{$error}}</li>
+                            @endforeach
+                            </ul>
+                            </div>
+                        @endif
+
+                        @if(\Session::has('success'))
+                            <div class="alert alert-success">
+                                <p>{{\Session::get('success')}}</p>
+                            </div>
+                        @endif
+
+                        @if(\Session::has('Forbidden'))
+                            <div class="alert alert-danger">
+                                <p>{{\Session::get('Forbidden')}}</p>
+                            </div>
+                        @endif
                         <form method="post" action="{{route('savesampling')}}" enctype='multipart/form-data'>
                             @csrf
-                            <h4 class="header-title">Textual inputs</h4>
-                            <p class="text-muted font-14 mb-4">Here are examples of <code>.form-control</code> applied to each textual HTML5 <code>&lt;input&gt;</code> <code>type</code>.</p>
+                            <h4 class="header-title">Form Pengajuan Sampling</h4>
+                            <p class="text-muted font-14 mb-4"></p>
                             <div class="form-group">
                                 <label class="col-form-label">Slot</label>
                                 <select class="custom-select" name="slot_id">
@@ -193,7 +214,7 @@
                                         @elseif($row->status == 2)
                                         <a href="#" class="badge badge-info">Proses</a>
                                         @elseif($row->status == 3)
-                                        <a href="#" class="badge badge-success">Selesai</a>
+                                        <a href="#" class="badge badge-primary">Finishing</a>
                                         @endif
                                     </h5>
                                     <h5 class="card-title">@if($row->model==0) rok @elseif($row->model==1) dress @else Top @endif</h5>
@@ -221,7 +242,7 @@
                                 <img src="/storage/imgsampling/{{$row->img}}" class="card-img-top" alt="...">
                                 <div class="card-body">
                                     <h5 class="title">{{DB::table('slot_s')->where('id', $row->slot_id)->value('mulai')}} s/d {{DB::table('slot_s')->where('id', $row->slot_id)->value('selesai')}} 
-                                        <a href="#" class="badge badge-primary">Selesai</a>
+                                        <a href="#" class="badge badge-success">Selesai</a>
                                     </h5>
                                     <h5 class="card-title">@if($row->model==0) rok @elseif($row->model==1) dress @else Top @endif</h5>
                                     <p class="card-text">{{$row->desc}}</p>

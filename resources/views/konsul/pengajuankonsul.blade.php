@@ -9,7 +9,7 @@
                 <h4 class="header-title">Sampling Yang Ada</h4>
                 <p class="text-muted font-14 mb-4">Here are examples of <code>.form-control</code> applied to each textual HTML5 <code>&lt;input&gt;</code> <code>type</code>.</p>
                     <div class="row row-cols-1 row-cols-md-3 g-4">
-                        @foreach($samplingS as $row)
+                        @foreach($sampling as $row)
                         <div class="col-lg-4 col-md-6">
                             <div class="card h-100 card-bordered">
                             <img src="/storage/imgsampling/{{$row->img}}" class="card-img-top" alt="...">
@@ -22,12 +22,14 @@
                                     @elseif($row->status == 2)
                                     <span class="badge bg-info">Proses</span>
                                     @elseif($row->status == 3)
+                                    <a href="#" class="badge badge-primary">Finishing</a>
+                                    @elseif($row->status == 4)
                                     <span class="badge bg-success ">Selesai</span>
                                     @endif
                                 </h5>
                                 <h5 class="card-title">@if($row->model==0) rok @elseif($row->model==1) dress @else Top @endif</h5>
                                 <p class="card-text">{{$row->desc}}</p>
-                                <a href="{{route('viewinputproduksi',['id' => $row->id])}}" class="btn btn-primary">Produksi Dengan Sampling ini</a>
+                                <a href="{{route('viewpilihkonsul',['id' => $row->id])}}" class="btn btn-primary">Pilih jadwal Konsul</a>
                             </div>
                             </div>
                         </div> 
@@ -36,20 +38,9 @@
                 </div>
             </div>
 
-            <div class="card mt-5">
-          
-
-                <div class="card-body my-5">
-                <div class="col-md-12 text-center">
-                    <h3 class="mb-3" >Produksi dengan Sampling Custom</h3>
-                    <a href="{{route('viewcussampproduksi')}}" class="btn btn-primary" style="text-align: center">Klik disini</a>
-                    </div>
-                    
-                </div>
-            </div>
 
             <div class="card mt-5">
-                <div class="card-header">Produksi on-going</div>
+                <div class="card-header">Produksi </div>
 
                 <div class="card-body">
                     <div class="row row-cols-1 row-cols-md-3 g-4">
@@ -67,11 +58,13 @@
                                         <a href="#" class="badge badge-info">Proses</a>
                                         @elseif($row2->status == 3)
                                         <a href="#" class="badge badge-primary">Finishing</a>
+                                        @elseif($row2->status == 4)
+                                        <a href="#" class="badge badge-success">Selesai</a>
                                         @endif
                                 </h5>
                                 <h5 class="card-title">Jumlah Produksi : {{$row2->jml}}</h5>
                                 <p class="card-text">{{$row2->desc}}</p>
-                                <a href="{{route('editproduksi',['id' => $row2->id])}}" class="btn btn-primary">Detail</a>
+                                <a href="{{route('viewpilihkonsul',['id' => $row2->id])}}" class="btn btn-primary">Pilih jadwal Konsul</a>
                             </div>
                             </div>
                         </div> 
