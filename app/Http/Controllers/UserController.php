@@ -27,15 +27,15 @@ class UserController extends Controller
         $slot=Slot_S::where('status','=', '1')->get();
         $sampling=Sampling::where([
             ['cus_id','=', $id],
-            ['status','!=', '4'],
             ['status','!=', '5'],
+            ['status','!=', '6'],
         ])->get();
         $samplingS=Sampling::where([
             ['cus_id','=', $id],
-            ['status','=', '4'],
+            ['status','=', '5'],
         ])->orwhere([
             ['cus_id','=', $id],
-            ['status','=', '5'],
+            ['status','=', '6'],
         ])->get();
         return view('sampling.pengajuansampling',compact('slot','sampling','samplingS'));
         //return $slot;
@@ -305,7 +305,7 @@ class UserController extends Controller
             'model' => $request->model,
             'img' => $finalS,
             'desc' => $request->desc,
-            'status' => 5,
+            'status' => 6,
             'ling_b' => $request->ling_b,
             'ling_pgang' => $request->ling_pgang,
             'ling_pingl' => $request->ling_pingl,
@@ -331,7 +331,7 @@ class UserController extends Controller
         $Sampling->save();
         $samplingid=Sampling::where([
             ['cus_id','=', $id],
-            ['status','=', '5'],
+            ['status','=', '6'],
         ])->latest()->first();
         return redirect()->route('viewinputproduksi',['id' => $samplingid]);
         // return $id;

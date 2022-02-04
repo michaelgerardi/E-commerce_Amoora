@@ -12,7 +12,7 @@
                                     <span>INVOICE</span>
                                 </div>
                                 <div class="iv-right col-6 text-md-right">
-                                    <span>#34445998</span>
+                                    <span>{{$dataD->id}} @if($jns==0){{$sampling->id}} @else {{$produksi->id}} @endif</span>
                                 </div>
                             </div>
                         </div>
@@ -95,23 +95,21 @@
                                             <input class="form-control" type="hidden" value="{{$jns}}" name="jns">
                                             <input class="form-control" type="hidden" value="{{$id}}" name="id">
                                             @csrf
-                                            <h4 class="header-title">isi dengan jadwal konsul </h4>
-                                            <p class="text-muted font-14 mb-4">Here are examples of <code>.form-control</code> applied to each textual HTML5 <code>&lt;input&gt;</code> <code>type</code>.</p>
                                             <div class="form-group">
                                                 <label for="example-text-input" class="col-form-label">Keterangan</label>
                                                 <input class="form-control" type="text" value="" name="ket">
                                             </div>
                                             <div class="form-group">
                                                 <label for="example-date-input" class="col-form-label">QTY</label>
-                                                <input class="form-control" type="number" onkeypress="return event.charCode >= 48 && event.charCode <=57" value="" name="qty">
+                                                <input class="form-control" id="qty" type="number" onkeypress="return event.charCode >= 48 && event.charCode <=57" value="" name="qty">
                                             </div>
                                             <div class="form-group">
                                                 <label for="example-time-input" class="col-form-label">Harga Satuan</label>
-                                                <input class="form-control" type="number" onkeypress="return event.charCode >= 48 && event.charCode <=57" value="" name="harga">
+                                                <input class="form-control" id="harga" type="number" onkeypress="return event.charCode >= 48 && event.charCode <=57" value="" name="harga">
                                             </div>
                                             <div class="form-group">
                                                 <label for="example-time-input" class="col-form-label">Total</label>
-                                                <input class="form-control" type="number" onkeypress="return event.charCode >= 48 && event.charCode <=57" value="" name="total">
+                                                <input class="form-control" id="total" type="number" onkeypress="return event.charCode >= 48 && event.charCode <=57" value="" name="total" readonly>
                                             </div>
                                             
                                         </div>
@@ -126,7 +124,7 @@
                         </div>
                     </div>
                     <div class="invoice-buttons text-right">
-                        <a href="#" class="invoice-btn">print invoice</a>
+                        <a href="{{route('generateinvoicesampling')}}" class="invoice-btn">print invoice</a>
                         <a href="#" class="invoice-btn">send invoice</a>
                     </div>
                 </div>

@@ -212,9 +212,11 @@
                                         @elseif($row->status == 1)
                                         <a href="#" class="badge badge-warning">Waiting list</a>
                                         @elseif($row->status == 2)
-                                        <a href="#" class="badge badge-info">Proses</a>
+                                        <a href="#" class="badge badge-info">Cutting</a>
                                         @elseif($row->status == 3)
-                                        <a href="#" class="badge badge-primary">Finishing</a>
+                                        <a href="#" class="badge badge-primary">Sewing</a>
+                                        @elseif($row->status == 4)
+                                        <a href="#" class="badge badge-info">Finishing & QC</a>
                                         @endif
                                     </h5>
                                     <h5 class="card-title">@if($row->model==0) rok @elseif($row->model==1) dress @else Top @endif</h5>

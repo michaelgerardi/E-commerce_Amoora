@@ -516,6 +516,7 @@
     <script src="{{ asset('js/pie-chart.js') }}"></script>
     <!-- others plugins -->
     <script src="{{ asset('js/plugins.js') }}"></script>
+    <script src="{{asset('js/sum.js')}}"></script>
     <script src="{{ asset('js/scripts.js') }}"></script>
 </body>
 

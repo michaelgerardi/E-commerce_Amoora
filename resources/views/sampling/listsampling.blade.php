@@ -49,19 +49,24 @@
                                             @elseif($row->status == 1)
                                             <span class="status-p bg-warning mb-2">Waiting list</span>
                                             <div class="progress" style="height: 8px;">
-                                                <div class="progress-bar bg-warning" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                <div class="progress-bar bg-warning" role="progressbar" style="width: 15%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                             </div>
                                             @elseif($row->status == 2)
-                                            <span class="status-p bg-info mb-2">Proses</span>
+                                            <span class="status-p bg-info mb-2">Cutting</span>
                                             <div class="progress" style="height: 8px;">
-                                                <div class="progress-bar bg-info" role="progressbar" style="width: 50%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                <div class="progress-bar bg-info" role="progressbar" style="width: 30%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                             </div>
                                             @elseif($row->status == 3)
-                                            <span class="status-p bg-primary mb-2">Finishing</span>
+                                            <span class="status-p bg-primary mb-2">Sewing</span>
                                             <div class="progress" style="height: 8px;">
-                                                <div class="progress-bar bg-primary" role="progressbar" style="width: 75%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                <div class="progress-bar bg-primary" role="progressbar" style="width: 60%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                             </div>
                                             @elseif($row->status == 4)
+                                            <span class="status-p bg-primary mb-2">Finishing & QC</span>
+                                            <div class="progress" style="height: 8px;">
+                                                <div class="progress-bar bg-primary" role="progressbar" style="width: 85%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                            @elseif($row->status == 5)
                                             <span class="status-p bg-success mb-2">Selesai</span>
                                             <div class="progress" style="height: 8px;">
                                                 <div class="progress-bar bg-success" role="progressbar" style="width: 100%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
@@ -91,9 +96,10 @@
                                                 <input type="hidden" name="id" value="{{$row->id}}">
                                                 <select class="custom-select" name="status">
                                                     <option value="1">Waiting list</option>
-                                                    <option value="2">Proses</option>
-                                                    <option value="3">Finishing</option>
-                                                    <option value="4">Selesai</option>
+                                                    <option value="2">cutting</option>
+                                                    <option value="3">sewing</option>
+                                                    <option value="4">Finishing & QC</option>
+                                                    <option value="5">Selesai</option>
                                                 </select>
                                                 </div>
                                                 <div class="modal-footer">

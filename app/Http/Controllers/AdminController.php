@@ -90,7 +90,7 @@ class AdminController extends Controller
 
     public function viewslistsampling()
     {
-        $sampling=Sampling::all();
+        $sampling=Sampling::where('status','!=','6')->get();
         return view('sampling.listsampling',compact('sampling'));
     }
 
@@ -295,6 +295,7 @@ class AdminController extends Controller
         }
         return redirect()->back();
     }
+
     public function generateinvoicesampling()
     {
         $pdf = PDF::loadview('/pdf/invoice')->setpaper('Legal','potrait');

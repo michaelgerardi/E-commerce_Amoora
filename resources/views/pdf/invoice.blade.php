@@ -11,10 +11,20 @@ div.cls_002{font-family:"Calibri",serif;font-size:11.1px;color:rgb(0,0,0);font-w
 <body>
 <div style="position:absolute;left:50%;margin-left:-306px;top:0px;width:612px;height:792px;border-style:outset;overflow:hidden">
 <div style="position:absolute;left:0px;top:0px">
-<img src="acaf9720-7772-11ec-a980-0cc47a792c0a_id_acaf9720-7772-11ec-a980-0cc47a792c0a_files/background1.jpg" width=612 height=792></div>
+<img src="{{asset('images/logo_1.png')}}" width=300 height=200></div>
 <div style="position:absolute;left:348.60px;top:71.78px" class="cls_002"><span class="cls_002">No</span></div>
 <div style="position:absolute;left:432.17px;top:71.78px" class="cls_002"><span class="cls_002">:</span></div>
-<div style="position:absolute;left:348.60px;top:94.34px" class="cls_002"><span class="cls_002">Nama</span></div>
+
+
+
+
+
+
+
+
+
+
+s_002">Nama</span></div>
 <div style="position:absolute;left:432.17px;top:94.34px" class="cls_002"><span class="cls_002">:</span></div>
 <div style="position:absolute;left:348.60px;top:116.69px" class="cls_002"><span class="cls_002">No Telp</span></div>
 <div style="position:absolute;left:432.17px;top:116.69px" class="cls_002"><span class="cls_002">:</span></div>

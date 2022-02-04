@@ -52,6 +52,7 @@ Route::post('/admin/setjadwal/save', [App\Http\Controllers\AdminController::clas
     //invoice//
 Route::get('/invoice/{id}/{jns}', [App\Http\Controllers\AdminController::class, 'lihatinvoicesampling'])->name('lihatinvoicesampling');
 Route::post('/invoice/additem', [App\Http\Controllers\AdminController::class, 'addinvoice'])->name('addinvoice');
+Route::get('/invoice/pdf', [App\Http\Controllers\AdminController::class, 'generateinvoicesampling'])->name('generateinvoicesampling');
 
 //customer//
     //sampling//
