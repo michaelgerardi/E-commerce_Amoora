@@ -19,7 +19,6 @@ class CreateProduksi extends Migration
                 $table->unsignedBigInteger('cus_id');
                 $table->unsignedBigInteger('samp_id')->nullable();
                 $table->unsignedBigInteger('admin_id')->nullable();
-                $table->unsignedBigInteger('bayar_id')->nullable();
                 $table->text('desc');
                 $table->unsignedSmallInteger('jml');
                 $table->char('status', 1);
@@ -27,7 +26,6 @@ class CreateProduksi extends Migration
                 $table->foreign('slot_id')->references('id')->on('slot_p');
                 $table->foreign('cus_id')->references('id')->on('users');
                 $table->foreign('samp_id')->references('id')->on('sampling');
-                $table->foreign('bayar_id')->references('id')->on('pembayaran');
         });
     }
 

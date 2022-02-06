@@ -50,9 +50,10 @@ Route::post('/admin/editproduksi/statusProduksi', [App\Http\Controllers\AdminCon
 Route::get('/admin/setjadwal', [App\Http\Controllers\AdminController::class, 'viewformtambahkonsul'])->name('viewformtambahkonsul');
 Route::post('/admin/setjadwal/save', [App\Http\Controllers\AdminController::class, 'tambahkonsul'])->name('tambahkonsul');
     //invoice//
-Route::get('/invoice/{id}/{jns}', [App\Http\Controllers\AdminController::class, 'lihatinvoicesampling'])->name('lihatinvoicesampling');
-Route::post('/invoice/additem', [App\Http\Controllers\AdminController::class, 'addinvoice'])->name('addinvoice');
-Route::get('/invoice/pdf', [App\Http\Controllers\AdminController::class, 'generateinvoicesampling'])->name('generateinvoicesampling');
+Route::get('/invc/{id}/{jns}', [App\Http\Controllers\AdminController::class, 'lihatinvoicesampling'])->name('lihatinvoicesampling');
+Route::post('/invc/additem', [App\Http\Controllers\AdminController::class, 'addinvoice'])->name('addinvoice');
+Route::get('/invc/pdf/{id}/{jns}', [App\Http\Controllers\AdminController::class, 'generateinvoicesampling'])->name('generateinvoicesampling');
+Route::get('/sendinvoice/{id}/{jns}', [App\Http\Controllers\AdminController::class, 'sendinvoice'])->name('sendinvoice');
 
 //customer//
     //sampling//
@@ -75,7 +76,8 @@ Route::post('/produksi/custom/samp/save', [App\Http\Controllers\UserController::
 Route::get('/konsul', [App\Http\Controllers\UserController::class, 'viewkonsul'])->name('viewkonsul');
 Route::get('/konsul/input/{id}', [App\Http\Controllers\UserController::class, 'viewpilihkonsul'])->name('viewpilihkonsul');
 Route::post('/konsul/input/save', [App\Http\Controllers\UserController::class, 'pilihkonsul'])->name('pilihkonsul');   
-
+    //invoice//
+Route::get('/listbayar', [App\Http\Controllers\UserController::class, 'viewlistbayar'])->name('viewlistbayar');
 // Route::group(['middleware' => ['auth:admin']], function () {
 //     Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 // });

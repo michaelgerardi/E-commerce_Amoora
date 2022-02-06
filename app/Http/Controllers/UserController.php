@@ -362,7 +362,17 @@ class UserController extends Controller
         ]);
         return redirect()->route('viewproduksi');
     }
-
+    public function viewlistbayar()
+    {
+        $id=Auth::user()->id;
+        $sampling = Sampling::where([
+            ['cus_id',$id],
+            ['status','!=', '5'],
+            ['status','!=', '6'],
+            ])->get();
+        $prod = Sampling::where('cus_id',$id)->get();
+        return view('invoice.listbayar',compact('sampling','prod'));
+    }
     public function inputbuktibyr(Request $request)
     {
         $id=Auth::user()->id;

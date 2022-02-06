@@ -12,7 +12,7 @@
                                     <span>INVOICE</span>
                                 </div>
                                 <div class="iv-right col-6 text-md-right">
-                                    <span>{{$dataD->id}} @if($jns==0){{$sampling->id}} @else {{$produksi->id}} @endif</span>
+                                    <span>{{$dataD->id}}{{$jasa->id}}</span>
                                 </div>
                             </div>
                         </div>
@@ -28,7 +28,7 @@
                                     <li>NO : </li>
                                     <li>Nama : {{$dataD->name}}</li>
                                     <li>No Telp : {{$dataD->no_telp}}</li>
-                                    <li>Tgl Masuk : {{$sampling->created_at}}</li>
+                                    <li>Tgl Masuk : {{$jasa->created_at}}</li>
                                     <li>Tgl Keluar : </li>
                                 </ul>
                             </div>
@@ -124,8 +124,8 @@
                         </div>
                     </div>
                     <div class="invoice-buttons text-right">
-                        <a href="{{route('generateinvoicesampling')}}" class="invoice-btn">print invoice</a>
-                        <a href="#" class="invoice-btn">send invoice</a>
+                        <a href="{{route('generateinvoicesampling',['id' => $id,'jns' => $jns])}}" class="invoice-btn">print invoice</a>
+                        <a href="{{route('sendinvoice',['id' => $id,'jns' => $jns])}}" class="invoice-btn">send invoice</a>
                     </div>
                 </div>
             </div>

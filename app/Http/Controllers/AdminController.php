@@ -7,6 +7,7 @@ use App\Models\Slot_S;
 use App\Models\Slot_P;
 use App\Models\Sampling;
 use App\Models\Produksi;
+use App\Models\Pembayaran;
 use App\Models\Konsul;
 use App\Models\User;
 use App\Models\DetailInvoice;
@@ -252,19 +253,20 @@ class AdminController extends Controller
     public function lihatinvoicesampling($id,$jns)
     {
         if($jns==0){
-            $sampling=Sampling::where('id',$id)->first();
-            $dataD=User::where('id',$sampling->cus_id)->first();
-            $invoice=DetailInvoice::where('samp_id',$sampling->id)->get();
-            $sum=DetailInvoice::where('samp_id',$sampling->id)->sum('total');
+            $jasa=Sampling::where('id',$id)->first();
+            $dataD=User::where('id',$jasa->cus_id)->first();
+            $invoice=DetailInvoice::where('samp_id',$jasa->id)->get();
+            $sum=DetailInvoice::where('samp_id',$jasa->id)->sum('total');
         }else{
-            $produksi=Produksi::where('id',$id)->first();
-            $dataD=User::where('id',$produksi->cus_id)->first();
-            $invoice=DetailInvoice::where('prod_id',$produksi->id)->get();
-            $sum=DetailInvoice::where('samp_id',$sampling->id)->sum('total');
+            $jasa=Produksi::where('id',$id)->first();
+            $dataD=User::where('id',$jasa->cus_id)->first();
+            $invoice=DetailInvoice::where('prod_id',$jasa->id)->get();
+            $sum=DetailInvoice::where('prod_id',$jasa->id)->sum('total');
         }
         //return
-        return view('invoice.lihatinvoiceadm',compact('dataD','sampling','invoice','id','jns','sum'));
+        return view('invoice.lihatinvoiceadm',compact('dataD','jasa','invoice','id','jns','sum'));
     }
+    
     public function addinvoice(Request $request)
     {
         $this->validate($request, [
@@ -296,12 +298,57 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
-    public function generateinvoicesampling()
+    public function generateinvoicesampling($id,$jns)
     {
-        $pdf = PDF::loadview('/pdf/invoice')->setpaper('Legal','potrait');
+        if($jns==0){
+            $jasa=Sampling::where('id',$id)->first();
+            $dataD=User::where('id',$jasa->cus_id)->first();
+            $invoice=DetailInvoice::where('samp_id',$jasa->id)->get();
+            $sum=DetailInvoice::where('samp_id',$jasa->id)->sum('total');
+        }else{
+            $jasa=Produksi::where('id',$id)->first();
+            $dataD=User::where('id',$jasa->cus_id)->first();
+            $invoice=DetailInvoice::where('prod_id',$jasa->id)->get();
+            $sum=DetailInvoice::where('prod_id',$jasa->id)->sum('total');
+        }
+        $pdf = PDF::loadview('/pdf/invoice',compact('dataD','jasa','invoice','id','jns','sum'))->setpaper('Legal','potrait');
         return $pdf->stream('invoice');
+        
     }
-
+    public function sendinvoice($id,$jns)
+    {
+        if($jns==0){
+            $jasa=Sampling::where('id',$id)->first();
+            $dataD=User::where('id',$jasa->cus_id)->first();
+            $invoice=DetailInvoice::where('samp_id',$jasa->id)->get();
+            $sum=DetailInvoice::where('samp_id',$jasa->id)->sum('total');
+        }else{
+            $jasa=Produksi::where('id',$id)->first();
+            $dataD=User::where('id',$jasa->cus_id)->first();
+            $invoice=DetailInvoice::where('prod_id',$jasa->id)->get();
+            $sum=DetailInvoice::where('prod_id',$jasa->id)->sum('total');
+        }
+        $pdf = PDF::loadview('/pdf/invoice',compact('dataD','jasa','invoice','id','jns','sum'))->setpaper('Legal','potrait');
+        $content = $pdf->download()->getOriginalContent();
+        $nama=$jns.'_'.$jasa->id.'_'.$dataD->id.'.pdf';
+        Storage::put('public/invoice/'.$nama,$content);
+        if($jns==0){
+            $bayar= new Pembayaran([
+                'samp_id' => $jasa->id,
+                'jenis_jasa' => $jns,
+                'file_invoice' => $nama,
+            ]);
+        }else{
+            $bayar= new Pembayaran([
+                'prod_id' => $jasa->id,
+                'jenis_jasa' => $jns,
+                'file_invoice' => $nama,
+            ]);
+            
+        }
+        $bayar->save();
+        return redirect()->back();
+    }
     public function verifbuktibyr(Request $request)
     {
         Pembayaran::where('id',$request->id)->update([

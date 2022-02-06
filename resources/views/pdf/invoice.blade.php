@@ -1,46 +1,150 @@
 <html>
-<head><meta http-equiv=Content-Type content="text/html; charset=UTF-8">
-<style type="text/css">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<meta name=Generator content="Microsoft Word 15 (filtered)">
+<style>
 <!--
-span.cls_002{font-family:"Calibri",serif;font-size:11.1px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}
-div.cls_002{font-family:"Calibri",serif;font-size:11.1px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:8.0pt;
+	margin-left:0in;
+	line-height:107%;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+.MsoChpDefault
+	{font-family:"Calibri",sans-serif;}
+.MsoPapDefault
+	{margin-bottom:8.0pt;
+	line-height:107%;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
 -->
 </style>
-<script type="text/javascript" src="acaf9720-7772-11ec-a980-0cc47a792c0a_id_acaf9720-7772-11ec-a980-0cc47a792c0a_files/wz_jsgraphics.js"></script>
+
 </head>
-<body>
-<div style="position:absolute;left:50%;margin-left:-306px;top:0px;width:612px;height:792px;border-style:outset;overflow:hidden">
-<div style="position:absolute;left:0px;top:0px">
-<img src="{{asset('images/logo_1.png')}}" width=300 height=200></div>
-<div style="position:absolute;left:348.60px;top:71.78px" class="cls_002"><span class="cls_002">No</span></div>
-<div style="position:absolute;left:432.17px;top:71.78px" class="cls_002"><span class="cls_002">:</span></div>
 
+<body lang=EN-US style='word-wrap:break-word'>
 
+<div class=WordSection1>
 
+<p class=MsoNormal style='margin-left:276.45pt'><span style='position:absolute;
+z-index:-1895825408;left:0px;margin-left:-35px;margin-top:0px;width:299px;
+height:89px'><img width=299 height=89
+src="{{'images/logo_1.png'}}"></span>No                               :</p>
 
+<p class=MsoNormal style='margin-left:276.45pt'>Nama                         : {{$dataD->name}}</p>
 
+<p class=MsoNormal style='margin-left:276.45pt'>No Telp                     : {{$dataD->no_telp}}</p>
 
+<p class=MsoNormal style='margin-left:276.45pt'>Tgl. Masuk               : {{$jasa->created_at}}</p>
 
+<p class=MsoNormal style='margin-left:276.45pt'>Tgl. Selesai               :</p>
 
+<p class=MsoNormal>&nbsp;</p>
 
+<table class=MsoTableGrid border=1 cellspacing=0 cellpadding=0
+ style='border-collapse:collapse;border:none'>
+ <tr>
+  <td width=56 valign=top style='width:42.3pt;border:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;line-height:normal'>NO</p>
+  </td>
+  <td width=57 valign=top style='width:42.5pt;border:solid windowtext 1.0pt;
+  border-left:none;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;line-height:normal'>QTY</p>
+  </td>
+  <td width=261 valign=top style='width:195.7pt;border:solid windowtext 1.0pt;
+  border-left:none;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;line-height:normal'>Keterangan</p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-left:none;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;line-height:normal'>Harga</p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-left:none;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;line-height:normal'>Jumlah</p>
+  </td>
+ </tr>
+ <tr style='height:175.95pt'>
+  <td width=56 valign=top style='width:42.3pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0in 5.4pt 0in 5.4pt;height:175.95pt'>
+  @foreach($invoice as $row)
+  <p class=MsoNormal style='margin-bottom:0in;line-height:normal'>{{$loop->iteration}}</p>
+  @endforeach
+  
+  </td>
+  <td width=57 valign=top style='width:42.5pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt;height:175.95pt'>
+  @foreach($invoice as $row)
+  <p class=MsoNormal style='margin-bottom:0in;line-height:normal'>{{$row->qty}}</p>
+  @endforeach
+  </td>
+  <td width=261 valign=top style='width:195.7pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt;height:175.95pt'>
+  @foreach($invoice as $row)
+  <p class=MsoNormal style='margin-bottom:0in;line-height:normal'>{{$row->ket}}</p>
+  @endforeach
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt;height:175.95pt'>
+  @foreach($invoice as $row)
+  <p class=MsoNormal style='margin-bottom:0in;line-height:normal'>{{$row->harga}}</p>
+  @endforeach
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt;height:175.95pt'>
+  @foreach($invoice as $row)
+  <p class=MsoNormal style='margin-bottom:0in;line-height:normal'>{{$row->total}}</p>
+  @endforeach
+  </td>
+ </tr>
+ <tr>
+  <td width=56 valign=top style='width:42.3pt;border:none;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;line-height:normal'>&nbsp;</p>
+  </td>
+  <td width=57 valign=top style='width:42.5pt;border:none;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;line-height:normal'>&nbsp;</p>
+  </td>
+  <td width=261 valign=top style='width:195.7pt;border:none;border-right:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;line-height:normal'>&nbsp;</p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;line-height:normal'>Total</p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-bottom:0in;line-height:normal'>{{$sum}}</p>
+  </td>
+ </tr>
+ 
+ 
+</table>
 
-s_002">Nama</span></div>
-<div style="position:absolute;left:432.17px;top:94.34px" class="cls_002"><span class="cls_002">:</span></div>
-<div style="position:absolute;left:348.60px;top:116.69px" class="cls_002"><span class="cls_002">No Telp</span></div>
-<div style="position:absolute;left:432.17px;top:116.69px" class="cls_002"><span class="cls_002">:</span></div>
-<div style="position:absolute;left:348.60px;top:139.25px" class="cls_002"><span class="cls_002">Tgl. Masuk</span></div>
-<div style="position:absolute;left:432.17px;top:139.25px" class="cls_002"><span class="cls_002">:</span></div>
-<div style="position:absolute;left:348.60px;top:161.81px" class="cls_002"><span class="cls_002">Tgl. Selesai</span></div>
-<div style="position:absolute;left:432.17px;top:161.81px" class="cls_002"><span class="cls_002">:</span></div>
-<div style="position:absolute;left:77.78px;top:206.95px" class="cls_002"><span class="cls_002">NO</span></div>
-<div style="position:absolute;left:120.05px;top:206.95px" class="cls_002"><span class="cls_002">QTY</span></div>
-<div style="position:absolute;left:162.55px;top:206.95px" class="cls_002"><span class="cls_002">Keterangan</span></div>
-<div style="position:absolute;left:358.22px;top:206.95px" class="cls_002"><span class="cls_002">Harga</span></div>
-<div style="position:absolute;left:451.85px;top:206.95px" class="cls_002"><span class="cls_002">Jumlah</span></div>
-<div style="position:absolute;left:358.22px;top:397.56px" class="cls_002"><span class="cls_002">Total</span></div>
-<div style="position:absolute;left:358.22px;top:411.48px" class="cls_002"><span class="cls_002">Deposit</span></div>
-<div style="position:absolute;left:358.22px;top:425.40px" class="cls_002"><span class="cls_002">Sisa</span></div>
+<p class=MsoNormal>&nbsp;</p>
+
 </div>
 
 </body>
-</html>
+

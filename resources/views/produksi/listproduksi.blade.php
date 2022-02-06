@@ -51,7 +51,7 @@
                                 @foreach($produksi as $row)
                                     <tr>
                                         <th>{{DB::table('users')->where('id', $row->cus_id)->value('name')}}</th>
-                                        <td>{{DB::table('slot_s')->where('id', $row->slot_id)->value('mulai')}} <br> s/d {{DB::table('slot_s')->where('id', $row->slot_id)->value('selesai')}}</td>
+                                        <td>{{DB::table('slot_p')->where('id', $row->slot_id)->value('mulai')}} <br> s/d {{DB::table('slot_p')->where('id', $row->slot_id)->value('selesai')}}</td>
                                         <td>@if($row->model == 0)
                                             rok
                                             @elseif($row->model == 1)
@@ -93,9 +93,8 @@
                                         <td>
                                         <a href="{{route('admineditproduksi',['id' => $row->id])}}" class="btn btn-primary mb-2">Detail</a>
                                         <a type="button" class="btn btn-danger mb-2" href="{{route('admindelS',['id' => $row->id])}}">Delete</a>
-                                        <a type="button" class="btn btn-danger mb-2" href="{{route('admindelS',['id' => $row->id])}}">Lihat Invoice</a>
-                                            <br>
-                                            <a type="button" class="btn btn-danger" href="{{route('admindelS',['id' => $row->id])}}">Kirim Invoice</a>
+                                        <br>
+                                        <a href="{{route('lihatinvoicesampling',['id' => $row->id,'jns' => '1'])}}" class="btn btn-primary">Invoice</a>
                                             <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModalLong{{$loop->iteration}}">
                                                 Set Status
                                             </button>
