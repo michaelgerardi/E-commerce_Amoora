@@ -67,7 +67,38 @@
                                             
                                         </td>
                                         <td>
-                                        
+                                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModalLong{{$loop->iteration}}">
+                                                Set Status
+                                            </button>
+                                            <div class="modal fade" id="exampleModalLong{{$loop->iteration}}">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Status</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Ubah Status Sampling
+                                                <form method="post" action="{{route('inputbuktibyr')}}" enctype='multipart/form-data'>
+                                                @csrf
+                                                <input type="hidden" name="id" value="{{$row->id}}">
+                                                <select class="custom-select" name="jenis_pembayaran">
+                                                    <option value="1">Transfer Bank</option>
+                                                    <option value="2">Lainnya</option>
+                                                    <option value="3">Cash</option>
+                                                </select>
+                                                <div class="col-sm-10 mt-2">
+                                                <input type="file" class="form-control-file" name="img_bukti">
+                                                </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-primary">Kirim</button>
+                                                </form>
+                                                </div>
+                                                </div>
+                                            </div>
+                                            </div>
                                         </td>
                                     </tr>
                                 @endforeach 

@@ -77,7 +77,8 @@ Route::get('/konsul', [App\Http\Controllers\UserController::class, 'viewkonsul']
 Route::get('/konsul/input/{id}', [App\Http\Controllers\UserController::class, 'viewpilihkonsul'])->name('viewpilihkonsul');
 Route::post('/konsul/input/save', [App\Http\Controllers\UserController::class, 'pilihkonsul'])->name('pilihkonsul');   
     //invoice//
-Route::get('/listbayar', [App\Http\Controllers\UserController::class, 'viewlistbayar'])->name('viewlistbayar');
+    Route::post('/listbayar/bukti', [App\Http\Controllers\UserController::class, 'inputbuktibyr'])->name('inputbuktibyr');   
+    Route::get('/listbayar', [App\Http\Controllers\UserController::class, 'viewlistbayar'])->name('viewlistbayar');
 // Route::group(['middleware' => ['auth:admin']], function () {
 //     Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 // });

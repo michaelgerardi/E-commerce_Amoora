@@ -63,7 +63,8 @@
                                 <ul class="collapse">
                                     <li><a href="{{route('viewsampling')}}">Sampling</a></li>
                                     <li><a href="{{route('viewproduksi')}}">Produksi</a></li>
-                                    <li><a href="{{route('viewkonsul')}}">konsul</a></li>
+                                    <li><a href="{{route('viewkonsul')}}">Konsul</a></li>
+                                    <li><a href="{{route('viewlistbayar')}}">Nota Tagihan</a></li>
                                 </ul>
                             </li>
                             <!-- //////////////// -->
