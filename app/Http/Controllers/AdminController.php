@@ -257,14 +257,16 @@ class AdminController extends Controller
             $dataD=User::where('id',$jasa->cus_id)->first();
             $invoice=DetailInvoice::where('samp_id',$jasa->id)->get();
             $sum=DetailInvoice::where('samp_id',$jasa->id)->sum('total');
+            $pemb=Pembayaran::where('samp_id',$jasa->id)->first();
         }else{
             $jasa=Produksi::where('id',$id)->first();
             $dataD=User::where('id',$jasa->cus_id)->first();
             $invoice=DetailInvoice::where('prod_id',$jasa->id)->get();
             $sum=DetailInvoice::where('prod_id',$jasa->id)->sum('total');
+            $pemb=Pembayaran::where('prod_id',$jasa->id)->first();
         }
         //return
-        return view('invoice.lihatinvoiceadm',compact('dataD','jasa','invoice','id','jns','sum'));
+        return view('invoice.lihatinvoiceadm',compact('dataD','jasa','invoice','id','jns','sum','pemb'));
     }
     
     public function addinvoice(Request $request)
@@ -351,10 +353,12 @@ class AdminController extends Controller
     }
     public function verifbuktibyr(Request $request)
     {
+        //$wow=Pembayaran::where('id',$request->id)->get();
         Pembayaran::where('id',$request->id)->update([
             'status' => 2
         ]);
         return redirect()->back();
+        //return $wow;
     }
     public function viewjadwalkonsul()
     {

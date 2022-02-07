@@ -52,6 +52,7 @@ Route::post('/admin/setjadwal/save', [App\Http\Controllers\AdminController::clas
     //invoice//
 Route::get('/invc/{id}/{jns}', [App\Http\Controllers\AdminController::class, 'lihatinvoicesampling'])->name('lihatinvoicesampling');
 Route::post('/invc/additem', [App\Http\Controllers\AdminController::class, 'addinvoice'])->name('addinvoice');
+Route::post('/invc/verifbuktibyr', [App\Http\Controllers\AdminController::class, 'verifbuktibyr'])->name('verifbuktibyr');
 Route::get('/invc/pdf/{id}/{jns}', [App\Http\Controllers\AdminController::class, 'generateinvoicesampling'])->name('generateinvoicesampling');
 Route::get('/sendinvoice/{id}/{jns}', [App\Http\Controllers\AdminController::class, 'sendinvoice'])->name('sendinvoice');
 
@@ -77,8 +78,8 @@ Route::get('/konsul', [App\Http\Controllers\UserController::class, 'viewkonsul']
 Route::get('/konsul/input/{id}', [App\Http\Controllers\UserController::class, 'viewpilihkonsul'])->name('viewpilihkonsul');
 Route::post('/konsul/input/save', [App\Http\Controllers\UserController::class, 'pilihkonsul'])->name('pilihkonsul');   
     //invoice//
-    Route::post('/listbayar/bukti', [App\Http\Controllers\UserController::class, 'inputbuktibyr'])->name('inputbuktibyr');   
-    Route::get('/listbayar', [App\Http\Controllers\UserController::class, 'viewlistbayar'])->name('viewlistbayar');
+Route::post('/listbayar/bukti', [App\Http\Controllers\UserController::class, 'inputbuktibyr'])->name('inputbuktibyr');   
+Route::get('/listbayar', [App\Http\Controllers\UserController::class, 'viewlistbayar'])->name('viewlistbayar');
 // Route::group(['middleware' => ['auth:admin']], function () {
 //     Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 // });

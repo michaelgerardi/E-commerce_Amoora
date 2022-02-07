@@ -129,6 +129,48 @@
                     </div>
                 </div>
             </div>
+
+            <div class="card mt-5">
+                <div class="card-body">
+                    <div class="single-table">
+                        <div class="table-responsive">
+                            <table class="table table-hover progress-table text-center">
+                                <thead class="text-uppercase">
+                                    <tr>
+                                        <th scope="col">Bukti Bayar</th>
+                                        <th scope="col">Jenis Pembayaran</th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col">Action</th>
+                                    </tr>
+                                </thead>
+                                    <tr>
+                                        <td>
+                                        @if($jns==0)
+                                        <a href="/storage/buktibayar/{{$pemb->img_bukti}}" class="btn btn-primary">lihat invoice</a>
+                                        @else
+                                        <a href="/storage/buktibayar/{{$pemb->img_bukti}}" class="btn btn-primary">lihat invoice</a>
+                                        @endif
+                                        </td>
+                                        <td>{{$pemb->jenis_pembayaran}}</td>
+                                        <td>{{$pemb->status}}</td>
+                                        <td>
+                                            <form action="{{route('verifbuktibyr')}}" method="post">
+                                                @csrf
+                                                <input type="hidden" name="id" value="{{$pemb->id}}">
+                                                <input type="hidden" name="jns" value="{{$jns}}">
+                                                <button type="submit" class="btn btn-primary">Verif</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                <tbody>
+                                
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 @endsection

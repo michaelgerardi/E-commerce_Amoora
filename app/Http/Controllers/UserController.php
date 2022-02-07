@@ -371,7 +371,8 @@ class UserController extends Controller
             ['status','!=', '5'],
             ['status','!=', '6'],
             ])->get();
-        $prod = Sampling::where('cus_id',$id)->get();
+        $prod = Produksi::where('cus_id',$id)->get();
+        //return $prod;
         return view('invoice.listbayar',compact('sampling','prod'));
     }
     public function inputbuktibyr(Request $request)
@@ -380,23 +381,43 @@ class UserController extends Controller
         $this->validate($request, [
             'jenis_pembayaran' => 'required',   
         ]);
-        if($request->img_bukti){
-            $fullname = $request->file('img_bukti')->getClientOriginalName();
-            $extn =$request->file('img_bukti')->getClientOriginalExtension();
-            $finalS=$id.'buktibayar'.'_'.$id.'_'.time().'.'.$extn;
-            $path = $request->file('img_bukti')->storeAs('public/buktibayar', $finalS);
-            Pembayaran::where('id',$request->id)->update([
-                'jenis_pembayaran' => $request->jenis_pembayaran,
-                'img_bukti' => $finalS,
-                'status' => 1,
-            ]);
-        }else{
-            Pembayaran::where('id',$request->id)->update([
-                'jenis_pembayaran' => $request->jenis_pembayaran,
-                'status' => 1,
-            ]);
+        if($request->jns==0){
+            if($request->img_bukti){
+                $fullname = $request->file('img_bukti')->getClientOriginalName();
+                $extn =$request->file('img_bukti')->getClientOriginalExtension();
+                $finalS=$id.'buktibayar'.'_'.$id.'_'.time().'.'.$extn;
+                $path = $request->file('img_bukti')->storeAs('public/buktibayar', $finalS);
+                Pembayaran::where('samp_id',$request->id)->update([
+                    'jenis_pembayaran' => $request->jenis_pembayaran,
+                    'img_bukti' => $finalS,
+                    'status' => 1,
+                ]);
+            }else{
+                Pembayaran::where('samp_id',$request->id)->update([
+                    'jenis_pembayaran' => $request->jenis_pembayaran,
+                    'status' => 1,
+                ]);
+            }
+        }elseif ($request->jns==1) {
+            if($request->img_bukti){
+                $fullname = $request->file('img_bukti')->getClientOriginalName();
+                $extn =$request->file('img_bukti')->getClientOriginalExtension();
+                $finalS=$id.'buktibayar'.'_'.$id.'_'.time().'.'.$extn;
+                $path = $request->file('img_bukti')->storeAs('public/buktibayar', $finalS);
+                Pembayaran::where('prod_id',$request->id)->update([
+                    'jenis_pembayaran' => $request->jenis_pembayaran,
+                    'img_bukti' => $finalS,
+                    'status' => 1,
+                ]);
+            }else{
+                Pembayaran::where('prod_id',$request->id)->update([
+                    'jenis_pembayaran' => $request->jenis_pembayaran,
+                    'status' => 1,
+                ]);
+            }
         }
         return redirect()->back();
+         //return $request->file('img_bukti')->getClientOriginalName();
     }
 
     public function viewkonsul()
