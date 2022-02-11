@@ -5,9 +5,8 @@
             
             
             <div class="main-content-inner">
-                <div class="row">
-                    <div class="col-lg-4 col-ml-12">
-                        <div class="row">
+                
+                    
                             <!-- Textual inputs start -->
                             <div class="col-12 mt-5">
                                 <div class="card">
@@ -21,7 +20,7 @@
                                             <label class="col-form-label">Slot</label>
                                             <select class="custom-select" name="id">
                                                 @foreach($jadwal as $row)
-                                                    <option value="{{$row->id}}">{{$row->tgl}}</option>
+                                                    <option value="{{$row->id}}">{{$row->tgl}} Pada Jam {{$row->mulai}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -34,27 +33,69 @@
                             <!-- Textual inputs end -->
                             
                             
-                        </div>
-                    </div>
-                    <div class="col-lg-8 col-ml-12">
-                        <div class="row">
+                        
+                    
                             <!-- basic form start -->
                             <div class="col-12 mt-5">
                                 <div class="card">
                                     <div class="card-body">
                                         <h4 class="header-title">Calendar</h4>
-                                        <form>
-                                            
-                                            
-                                        </form>
+                                        <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+                                            <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+                                            <link href="{{ asset('fullcalendar/packages/core/main.css') }}" rel="stylesheet">
+                                            <link href="{{ asset('fullcalendar/packages/daygrid/main.css') }}" rel="stylesheet">
+                                            <div class="content p-0 col-sm-12">
+                                            <div id='calendar'></div>
                                     </div>
                                 </div>
                             </div>
                             <!-- basic form end -->
                             
-                        </div>
-                    </div>
-                </div>
+                        
+                    
+                
             </div>
         </div>
+        <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
+        <script src="{{ asset('js/popper.min.js') }}"></script>
+        <script src="{{ asset('fullcalendar/packages/core/main.js') }}"></script>
+        <script src="{{ asset('fullcalendar/packages/interaction/main.js') }}"></script>
+        <script src="{{ asset('fullcalendar/packages/daygrid/main.js')}}"></script>
+
+                <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                var calendarEl = document.getElementById('calendar');
+
+                var calendar = new FullCalendar.Calendar(calendarEl, {
+                plugins: [ 'interaction', 'dayGrid' ],
+                defaultDate: <?php echo "'".date('Y-m-d')."'" ?>,
+                editable: false,
+                eventLimit: true, // allow "more" link when too many events
+                events: [
+                    // {title:'eek',start:'2022-02-08'},
+                    <?php
+                 foreach($cal as $row){
+                     $echo="{"."title: "."'".$row['title']." ".$row['mulai']."'".",
+                        start: "."'".$row['tgl']."'".",";
+                        
+                        if ($row['status']==0) {
+                            $echo.="backgroundColor: "."'"."green"."'".",
+                            borderColor: "."'"."green"."'"."},";
+                        }elseif ($row['status']==1) {
+                            $echo.="backgroundColor: "."'"."red"."'".",
+                            borderColor: "."'"."red"."'"."},";
+                        }else{
+                            $echo.="backgroundColor: "."'"."grey"."'".",
+                            borderColor: "."'"."grey"."'"."},";
+                        }
+                    echo $echo;   
+                }
+                ?>
+                ]
+                });
+
+                calendar.render();
+            });
+
+                </script>
         @endsection

@@ -440,7 +440,8 @@ class UserController extends Controller
     public function viewpilihkonsul($id)
     {
         $jadwal = Konsul::where('status','0')->get();
-        return view('konsul.ambiljadwal',compact('jadwal','id'));
+        $cal = Konsul::all();
+        return view('konsul.ambiljadwal',compact('jadwal','id','cal'));
     }
 
     public function pilihkonsul(Request $request)

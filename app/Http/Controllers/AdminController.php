@@ -368,7 +368,8 @@ class AdminController extends Controller
     public function viewformtambahkonsul()
     {
         $id_admin=Auth::user()->id;
-        return view('konsul.setjadwal',compact('id_admin'));
+        $jadwal = Konsul::all();
+        return view('konsul.setjadwal',compact('id_admin','jadwal'));
     }
     public function tambahkonsul(Request $request)
     {

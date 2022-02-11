@@ -43,13 +43,16 @@ div.WordSection1
 <p class=MsoNormal style='margin-left:276.45pt'><span style='position:absolute;
 z-index:-1895825408;left:0px;margin-left:-35px;margin-top:0px;width:299px;
 height:89px'><img width=299 height=89
-src="{{'images/logo_1.png'}}"></span>No                               :</p>
+src="{{'images/logo_1.png'}}"></span></p>
+<br>
+<p class=MsoNormal style='margin-left:276.45pt'>No                              :</p>
+<p class=MsoNormal style='margin-left:276.45pt'>Nama                         :{{$dataD->name}}</p>
 
-<p class=MsoNormal style='margin-left:276.45pt'>Nama                         : {{$dataD->name}}</p>
-
-<p class=MsoNormal style='margin-left:276.45pt'>No Telp                     : {{$dataD->no_telp}}</p>
-
-<p class=MsoNormal style='margin-left:276.45pt'>Tgl. Masuk               : {{$jasa->created_at}}</p>
+<p class=MsoNormal style='margin-left:276.45pt'>No Telp                      :{{$dataD->no_telp}}</p>
+<p class=MsoNormal style='margin-bottom:7.5pt;line-height:normal;background:
+white'><span style='font-size:13.0pt;font-family:Roboto;color:#212529'>082123488998
+@amoora.couture                               </span><span style='color:black'>Tgl.
+Masuk                 :{{$jasa->created_at}}</span></p>
 
 <p class=MsoNormal style='margin-left:276.45pt'>Tgl. Selesai               :</p>
 
@@ -142,7 +145,23 @@ src="{{'images/logo_1.png'}}"></span>No                    �
  
 </table>
 
+<p class=MsoNormal><span style='color:white'>                                                                </span></p>
+
 <p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal align=center style='margin-left:4.0in;text-align:center'><b><span
+style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>No.
+Rekening BCA 8610672311</span></b></p>
+
+<p class=MsoNormal align=center style='margin-left:4.0in;text-align:center'><b><span
+style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>a/n
+Nurulita Nurjannah</span></b></p>
+
+
+
+
+
+
 
 </div>
 
