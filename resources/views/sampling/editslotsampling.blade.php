@@ -55,6 +55,12 @@
                             <input type="date" class="form-control" name="selesai" value="{{$slot->selesai}}">
                         </div>
                     </div>
+                    <div class="form-group row">
+                        <label class="control-label col-sm-2" for="nik">Kuota</label>
+                        <div class="col-sm-2 ">
+                            <input type="number" class="form-control" onkeypress="return event.charCode >= 48 && event.charCode <=57" name="kuota" value="{{$slot->kuota}}">
+                        </div>
+                    </div>
                     <div class="form-check form-switch">
                         <input class="form-check-input" type="checkbox" role="switch" name='status' id="flexSwitchCheckChecked" @if($slot->status==1) checked @endif>
                         <label class="form-check-label" for="flexSwitchCheckChecked">Aktif/Non-Aktif</label>

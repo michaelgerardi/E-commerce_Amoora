@@ -60,7 +60,7 @@
                                             @endif
                                         </td>
                                         <td>{{$row->jml}}</td>
-                                        <td>@if(DB::table('pembayaran')->where('samp_id', $row->id)->value('status')==0) Belum Lunas @else Lunas @endif</td>
+                                        <td>@if(DB::table('pembayaran')->where('samp_id', $row->id)->value('status')==0) Belum Lunas @elseif(DB::table('pembayaran')->where('samp_id', $row->id)->value('status')==1) Menunggu @elseif(DB::table('pembayaran')->where('samp_id', $row->id)->value('status')==2) Lunas @endif</td>
                                         <td>
                                             <a href="/storage/invoice/{{DB::table('pembayaran')->where('samp_id', $row->id)->value('file_invoice')}}" class="btn btn-primary">lihat invoice</a>
                                         
@@ -115,7 +115,7 @@
                                             @endif
                                         </td>
                                         <td>{{$row2->jml}}</td>
-                                        <td>@if(DB::table('pembayaran')->where('prod_id', $row2->id)->value('status')==0) Belum Lunas @elseif(DB::table('pembayaran')->where('prod_id', $row2->id)->value('status')==1) Menunggu Verifikasi @endif</td>
+                                        <td>@if(DB::table('pembayaran')->where('prod_id', $row2->id)->value('status')==0) Belum Lunas @elseif(DB::table('pembayaran')->where('prod_id', $row2->id)->value('status')==1) Menunggu Verifikasi @elseif(DB::table('pembayaran')->where('prod_id', $row2->id)->value('status')==2) Lunas @endif</td>
                                         <td>
                                             <a href="/storage/invoice/{{DB::table('pembayaran')->where('prod_id', $row2->id)->value('file_invoice')}}" class="btn btn-primary">lihat invoice</a>
                                         

@@ -74,7 +74,7 @@ class AdminController extends Controller
             'title' => $request->title,
             'mulai' => $request->mulai,
             'selesai' => $request->selesai,
-            'selesai' => $request->kuota,
+            'kuota' => $request->kuota,
             'status' => $status
             
         ]);

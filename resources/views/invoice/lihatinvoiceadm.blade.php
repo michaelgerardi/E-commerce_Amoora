@@ -152,7 +152,8 @@
                                         @endif
                                         </td>
                                         <td>{{$pemb->jenis_pembayaran}}</td>
-                                        <td>{{$pemb->status}}</td>
+                                        
+                                        <td>@if($pemb->status==0) Belum Lunas @elseif($pemb->status==1) Menunggu @elseif($pemb->status==2) Lunas @endif</td>
                                         <td>
                                             <form action="{{route('verifbuktibyr')}}" method="post">
                                                 @csrf

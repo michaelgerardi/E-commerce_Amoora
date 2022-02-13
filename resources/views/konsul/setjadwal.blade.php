@@ -41,7 +41,7 @@
                     </div>
                     </div>
                     
-                    <div class="col-lg-12 col-ml-12">
+                    <div class="col-lg-10 col-md-12">
                         
                             <!-- basic form start -->
                                 <div class="card">
@@ -51,7 +51,7 @@
                                             <link href="{{ asset('css/style.css') }}" rel="stylesheet">
                                             <link href="{{ asset('fullcalendar/packages/core/main.css') }}" rel="stylesheet">
                                             <link href="{{ asset('fullcalendar/packages/daygrid/main.css') }}" rel="stylesheet">
-                                            <div class="content p-0 col-sm-12">
+                                            <div class="content p-0 m-0 col-sm-12">
                                             <div id='calendar'></div>
                                     </div>
                                 </div>

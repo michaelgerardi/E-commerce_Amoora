@@ -385,7 +385,7 @@ class UserController extends Controller
             if($request->img_bukti){
                 $fullname = $request->file('img_bukti')->getClientOriginalName();
                 $extn =$request->file('img_bukti')->getClientOriginalExtension();
-                $finalS=$id.'buktibayar'.'_'.$id.'_'.time().'.'.$extn;
+                $finalS=$request->jns.'buktibayar'.'_'.$request->id.'_'.$id.'.'.$extn;
                 $path = $request->file('img_bukti')->storeAs('public/buktibayar', $finalS);
                 Pembayaran::where('samp_id',$request->id)->update([
                     'jenis_pembayaran' => $request->jenis_pembayaran,
@@ -402,7 +402,7 @@ class UserController extends Controller
             if($request->img_bukti){
                 $fullname = $request->file('img_bukti')->getClientOriginalName();
                 $extn =$request->file('img_bukti')->getClientOriginalExtension();
-                $finalS=$id.'buktibayar'.'_'.$id.'_'.time().'.'.$extn;
+                $finalS=$request->jns.'buktibayar'.'_'.$request->id.'_'.$id.'.'.$extn;
                 $path = $request->file('img_bukti')->storeAs('public/buktibayar', $finalS);
                 Pembayaran::where('prod_id',$request->id)->update([
                     'jenis_pembayaran' => $request->jenis_pembayaran,
