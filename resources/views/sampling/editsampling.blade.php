@@ -40,7 +40,7 @@
                             <p class="text-muted font-14 mb-4">Here are examples of <code>.form-control</code> applied to each textual HTML5 <code>&lt;input&gt;</code> <code>type</code>.</p>
                             <div class="row mb-3">
                             <div class="col-md-4 col-sm-4">
-                                <img src="/storage/imgsampling/{{$sampling->img}}" height='350' class="card-img-top" alt="...">
+                                <img src="/storage/imgsampling/{{DB::table('detail_pakaian')->where('id', $sampling->detail_id)->value('img')}}" height='350' class="card-img-top" alt="...">
                             </div>
                                 <div class="col-md-8 col-sm-8">
                                     <div class="form-group">
@@ -52,9 +52,9 @@
                                     <div class="form-group">
                                         <label class="col-form-label">Model</label>
                                         <select class="custom-select" name="model">
-                                            <option selected value="0">rok</option @if($sampling->model==0) selected @endif>
-                                            <option selected value="1">dress</option @if($sampling->model==1) selected @endif>
-                                            <option selected value="2">top</option @if($sampling->model==2) selected @endif>
+                                            <option selected value="0">rok</option @if(DB::table('detail_pakaian')->where('id', $sampling->detail_id)->value('model')==0) selected @endif>
+                                            <option selected value="1">dress</option @if(DB::table('detail_pakaian')->where('id', $sampling->detail_id)->value('model')==1) selected @endif>
+                                            <option selected value="2">top</option @if(DB::table('detail_pakaian')->where('id', $sampling->detail_id)->value('model')==2) selected @endif>
                                         </select>
                                     </div>
                                     
@@ -62,7 +62,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">Deskripsi</span>
                                         </div>
-                                        <textarea class="form-control" aria-label="With textarea" name="desc">{{$sampling->desc}}</textarea>
+                                        <textarea class="form-control" aria-label="With textarea" name="desc">{{DB::table('detail_pakaian')->where('id', $sampling->detail_id)->value('desc')}}</textarea>
                                     </div>
                                     <div class="form-group">
                                         <label for="example-number-input" class="col-form-label">Jumlah Sampling</label>
@@ -72,117 +72,117 @@
                             <div class="row col-sm-12">
                                 <div class="form-group col-sm-6">
                                     <label for="example-text-input" class="col-form-label">Lingkar Badan</label>
-                                    <input class="form-control" type="text" value="{{$sampling->ling_b}}" name="ling_b" placeholder="Angka dalam Cm">
+                                    <input class="form-control" type="text" value="{{DB::table('detail_pakaian')->where('id', $sampling->detail_id)->value('ling_b')}}" name="ling_b" placeholder="Angka dalam Cm">
                                 </div>
                                 <div class="form-group col-sm-6">
                                     <label for="example-text-input" class="col-form-label">Lingkar Pinggang</label>
-                                    <input class="form-control" type="text" value="{{$sampling->ling_pgang}}" name="ling_pgang">
+                                    <input class="form-control" type="text" value="{{DB::table('detail_pakaian')->where('id', $sampling->detail_id)->value('ling_pgang')}}" name="ling_pgang">
                                 </div>
 
                             </div>
                             <div class="row col-sm-12">
                                 <div class="form-group col-sm-6">
                                     <label for="example-text-input" class="col-form-label">Lingkar Pinggul</label>
-                                    <input class="form-control" type="text" value="{{$sampling->ling_pingl}}" name="ling_pingl">
+                                    <input class="form-control" type="text" value="{{DB::table('detail_pakaian')->where('id', $sampling->detail_id)->value('ling_pingl')}}" name="ling_pingl">
                                 </div>
                                 <div class="form-group col-sm-6">
                                     <label for="example-text-input" class="col-form-label">Lingkar leher</label>
-                                    <input class="form-control" type="text" value="{{$sampling->ling_lh}}" name="ling_lh">
+                                    <input class="form-control" type="text" value="{{DB::table('detail_pakaian')->where('id', $sampling->detail_id)->value('ling_lh')}}" name="ling_lh">
                                 </div>
 
                             </div>
                             <div class="row col-sm-12">
                                 <div class="form-group col-sm-6">
                                     <label for="example-text-input" class="col-form-label">Lebar Bahu</label>
-                                    <input class="form-control" type="text" value="{{$sampling->leb_bahu}}" name="leb_bahu">
+                                    <input class="form-control" type="text" value="{{DB::table('detail_pakaian')->where('id', $sampling->detail_id)->value('leb_bahu')}}" name="leb_bahu">
                                 </div>
                                 <div class="form-group col-sm-6">
                                     <label for="example-text-input" class="col-form-label">Panjang Lengan</label>
-                                    <input class="form-control" type="text" value="{{$sampling->pj_lengan}}" name="pj_lengan">
+                                    <input class="form-control" type="text" value="{{DB::table('detail_pakaian')->where('id', $sampling->detail_id)->value('pj_lengan')}}" name="pj_lengan">
                                 </div>
 
                             </div>
                             <div class="row col-sm-12">
                                 <div class="form-group col-sm-6">
                                     <label for="example-text-input" class="col-form-label">Lingkar Kerung Lengan</label>
-                                    <input class="form-control" type="text" value="{{$sampling->ling_kr_leng}}" name="ling_kr_leng">
+                                    <input class="form-control" type="text" value="{{DB::table('detail_pakaian')->where('id', $sampling->detail_id)->value('ling_kr_leng')}}" name="ling_kr_leng">
                                 </div>
                                 <div class="form-group col-sm-6">
                                     <label for="example-text-input" class="col-form-label">Lingkar Lengan</label>
-                                    <input class="form-control" type="text" value="{{$sampling->ling_lengan}}" name="ling_lengan">
+                                    <input class="form-control" type="text" value="{{DB::table('detail_pakaian')->where('id', $sampling->detail_id)->value('ling_lengan')}}" name="ling_lengan">
                                 </div>
 
                             </div>
                             <div class="row col-sm-12">
                                 <div class="form-group col-sm-6">
                                     <label for="example-text-input" class="col-form-label">Lingkar Pergelangan</label>
-                                    <input class="form-control" type="text" value="{{$sampling->ling_pergel}}" name="ling_pergel">
+                                    <input class="form-control" type="text" value="{{DB::table('detail_pakaian')->where('id', $sampling->detail_id)->value('ling_pergel')}}" name="ling_pergel">
                                 </div>
                                 <div class="form-group col-sm-6">
                                     <label for="example-text-input" class="col-form-label">Lebar Muka</label>
-                                    <input class="form-control" type="text" value="{{$sampling->leb_muka}}" name="leb_muka">
+                                    <input class="form-control" type="text" value="{{DB::table('detail_pakaian')->where('id', $sampling->detail_id)->value('leb_muka')}}" name="leb_muka">
                                 </div>
 
                             </div>
                             <div class="row col-sm-12">
                                 <div class="form-group col-sm-6">
                                     <label for="example-text-input" class="col-form-label">Lebar Punggung</label>
-                                    <input class="form-control" type="text" value="{{$sampling->leb_pungg}}" name="leb_pungg">
+                                    <input class="form-control" type="text" value="{{DB::table('detail_pakaian')->where('id', $sampling->detail_id)->value('leb_pungg')}}" name="leb_pungg">
                                 </div>
                                 <div class="form-group col-sm-6">
                                     <label for="example-text-input" class="col-form-label">Panjang Punggung</label>
-                                    <input class="form-control" type="text" value="{{$sampling->panj_pungg}}" name="panj_pungg">
+                                    <input class="form-control" type="text" value="{{DB::table('detail_pakaian')->where('id', $sampling->detail_id)->value('panj_pungg')}}" name="panj_pungg">
                                 </div>
 
                             </div>
                             <div class="row col-sm-12">
                                 <div class="form-group col-sm-6">
                                     <label for="example-text-input" class="col-form-label">Panjang Baju</label>
-                                    <input class="form-control" type="text" value="{{$sampling->panj_baju}}" name="panj_baju">
+                                    <input class="form-control" type="text" value="{{DB::table('detail_pakaian')->where('id', $sampling->detail_id)->value('panj_baju')}}" name="panj_baju">
                                 </div>
                                 <div class="form-group col-sm-6">
                                     <label for="example-text-input" class="col-form-label">Tinggi pinggul</label>
-                                    <input class="form-control" type="text" value="{{$sampling->tinggi_pingl}}" name="tinggi_pingl">
+                                    <input class="form-control" type="text" value="{{DB::table('detail_pakaian')->where('id', $sampling->detail_id)->value('tinggi_pingl')}}" name="tinggi_pingl">
                                 </div>
 
                             </div>
                             <div class="row col-sm-12">
                                 <div class="form-group col-sm-6">
                                     <label for="example-text-input" class="col-form-label">Lingkar Pinggang</label>
-                                    <input class="form-control" type="text" value="{{$sampling->ling_pinggang}}" name="ling_pinggang">
+                                    <input class="form-control" type="text" value="{{DB::table('detail_pakaian')->where('id', $sampling->detail_id)->value('ling_pinggang')}}" name="ling_pinggang">
                                 </div>
                                 <div class="form-group col-sm-6">
                                     <label for="example-text-input" class="col-form-label">Lingkar Pesak</label>
-                                    <input class="form-control" type="text" value="{{$sampling->ling_pesak}}" name="ling_pesak">
+                                    <input class="form-control" type="text" value="{{DB::table('detail_pakaian')->where('id', $sampling->detail_id)->value('ling_pesak')}}" name="ling_pesak">
                                 </div>
 
                             </div>
                             <div class="row col-sm-12">
                                 <div class="form-group col-sm-6">
                                     <label for="example-text-input" class="col-form-label">Lingkar Paha</label>
-                                    <input class="form-control" type="text" value="{{$sampling->ling_paha}}" name="ling_paha">
+                                    <input class="form-control" type="text" value="{{DB::table('detail_pakaian')->where('id', $sampling->detail_id)->value('ling_paha')}}" name="ling_paha">
                                 </div>
                                 <div class="form-group col-sm-6">
                                     <label for="example-text-input" class="col-form-label">Lingkar Lutut</label>
-                                    <input class="form-control" type="text" value="{{$sampling->ling_lutut}}" name="ling_lutut">
+                                    <input class="form-control" type="text" value="{{DB::table('detail_pakaian')->where('id', $sampling->detail_id)->value('ling_lutut')}}" name="ling_lutut">
                                 </div>
 
                             </div>
                             <div class="row col-sm-12">
                                 <div class="form-group col-sm-6">
                                     <label for="example-text-input" class="col-form-label">Lingkar Kaki</label>
-                                    <input class="form-control" type="text" value="{{$sampling->ling_kaki}}" name="ling_kaki">
+                                    <input class="form-control" type="text" value="{{DB::table('detail_pakaian')->where('id', $sampling->detail_id)->value('ling_kaki')}}" name="ling_kaki">
                                 </div>
                                 <div class="form-group col-sm-6">
                                     <label for="example-text-input" class="col-form-label">Panjang Celana</label>
-                                    <input class="form-control" type="text" value="{{$sampling->panj_cln_rok}}" name="panj_cln_rok">
+                                    <input class="form-control" type="text" value="{{DB::table('detail_pakaian')->where('id', $sampling->detail_id)->value('panj_cln_rok')}}" name="panj_cln_rok">
                                 </div>
 
                             </div>
                             <div class="row col-sm-12">
                                 <div class="form-group col-sm-6">
                                     <label for="example-text-input" class="col-form-label">Tinggi Duduk</label>
-                                    <input class="form-control" type="text" value="{{$sampling->tingg_dudk}}" name="tingg_dudk">
+                                    <input class="form-control" type="text" value="{{DB::table('detail_pakaian')->where('id', $sampling->detail_id)->value('tingg_dudk')}}" name="tingg_dudk">
                                 </div>
                                 <div class="form-group col-sm-6">
                                 <label class="control-label" for="ftktp">Upload Image *</label>

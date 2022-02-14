@@ -143,6 +143,7 @@
                                         <th scope="col">Action</th>
                                     </tr>
                                 </thead>
+                                @if($pemb !=null)
                                     <tr>
                                         <td>
                                         @if($jns==0)
@@ -163,6 +164,7 @@
                                             </form>
                                         </td>
                                     </tr>
+                                    @endif
                                 <tbody>
                                 
                                 </tbody>

@@ -14,18 +14,18 @@ class CreateProduksi extends Migration
     public function up()
     {
         Schema::create('produksi', function (Blueprint $table) {
-                $table->id();
-                $table->unsignedBigInteger('slot_id');
-                $table->unsignedBigInteger('cus_id');
-                $table->unsignedBigInteger('samp_id')->nullable();
-                $table->unsignedBigInteger('admin_id')->nullable();
-                $table->text('desc');
-                $table->unsignedSmallInteger('jml');
-                $table->char('status', 1);
-                $table->timestamps();
-                $table->foreign('slot_id')->references('id')->on('slot_p');
-                $table->foreign('cus_id')->references('id')->on('users');
-                $table->foreign('samp_id')->references('id')->on('sampling');
+            $table->id();
+            $table->unsignedBigInteger('slot_id');
+            $table->unsignedBigInteger('cus_id');
+            $table->unsignedBigInteger('detail_id')->nullable();
+            $table->unsignedBigInteger('admin_id')->nullable();
+            $table->text('desc');
+            $table->unsignedSmallInteger('jml');
+            $table->char('status', 1);
+            $table->timestamps();
+            $table->foreign('slot_id')->references('id')->on('slot_p');
+            $table->foreign('cus_id')->references('id')->on('users');
+            $table->foreign('detail_id')->references('id')->on('detail_pakaian');
         });
     }
 
