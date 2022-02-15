@@ -249,34 +249,26 @@ class UserController extends Controller
     {
         $id=Auth::user()->id;
         $slot=Slot_P::where('status','=', '1')->get();
-        $samplingS=Sampling::where([
-            ['cus_id','=', $id],
-            ['status','=', '4'],
-        ])->orwhere([
-            ['cus_id','=', $id],
-            ['status','=', '5'],
-        ])->get();
+        $detail=Detail_pakaian::all();
         $produksi=Produksi::where([
             ['cus_id','=', $id],
             ['status','!=', '4'],
         ])->get();
-        return view('produksi.pengajuanproduksi',compact('slot','samplingS','produksi'));
+        return view('produksi.pengajuanproduksi',compact('slot','detail','produksi'));
        
     }
     public function viewinputproduksi($id)
     {
         $slot=Slot_P::where('status','=', '1')->get();
-        $sampling=Sampling::where([
-            ['id','=', $id],
-        ])->first();
-        return view('produksi.inputproduksi',compact('sampling','slot'));
+        $detail=Detail_pakaian::where('id',$id)->first();
+        return view('produksi.inputproduksi',compact('slot','detail'));
     }
     public function saveinputprod(Request $request)
     {
         $id=Auth::user()->id;
         $this->validate($request,[
             'slot_id' => 'required',
-            'samp_id' => 'required',
+            'detail_id' => 'required',
             'desc' => 'required',
             'jml' => 'required' 
         ]);
@@ -284,7 +276,7 @@ class UserController extends Controller
         $produksi= new Produksi([
             'cus_id' => $id,
             'slot_id' => $request->slot_id,
-            'samp_id' => $request->samp_id,
+            'detail_id' => $request->detail_id,
             'desc' => $request->desc,
             'status' => 0,
             'jml' => $request->jml 
@@ -310,12 +302,10 @@ class UserController extends Controller
         $finalS=$id.$request->slot_id.'sampling'.'_'.time().'.'.$extn;
         $path = $request->file('img_model')->storeAs('public/imgsampling', $finalS);
 
-        $Sampling= new Sampling([
-            'cus_id' => $id,
+        $detail= Detail_pakaian::create([
             'model' => $request->model,
             'img' => $finalS,
             'desc' => $request->desc,
-            'status' => 6,
             'ling_b' => $request->ling_b,
             'ling_pgang' => $request->ling_pgang,
             'ling_pingl' => $request->ling_pingl,
@@ -338,26 +328,21 @@ class UserController extends Controller
             'panj_cln_rok' => $request->panj_cln_rok,
             'tingg_dudk' => $request->tingg_dudk,
         ]);
-        $Sampling->save();
-        $samplingid=Sampling::where([
-            ['cus_id','=', $id],
-            ['status','=', '6'],
+        $detailid=detail_pakaian::where([
+            ['id','=', $detail->id],
         ])->latest()->first();
-        return redirect()->route('viewinputproduksi',['id' => $samplingid]);
+        return redirect()->route('viewinputproduksi',['id' => $detailid->id]);
         // return $id;
     }
     public function vieweditproduksi($id)
     {
-        $id_samp=Produksi::where([
-            ['id','=', $id],
-        ])->value('samp_id');
         $produksi=Produksi::where([
             ['id','=', $id],
         ])->first();
-        $sampling=Sampling::where([
-            ['id','=', $id_samp],
+        $detail=detail_pakaian::where([
+            ['id','=', $produksi->detail_id],
         ])->first();
-        return view('produksi.editproduksi',compact('produksi','sampling'));
+        return view('produksi.editproduksi',compact('produksi','detail'));
     }
 
     public function saveeditprod(Request $request)
@@ -434,15 +419,16 @@ class UserController extends Controller
         $id=Auth::user()->id;
         $produksi=Produksi::where('cus_id',$id)->get();
         $sampling=Sampling::where('cus_id',$id)->get();
-        $id_prod=Produksi::where('cus_id',$id)->value('id');
-        $id_samp=Sampling::where('cus_id',$id)->value('id');
-        $jadwal = Konsul::where([
-            ['status','1'],
-            ['prod_id',$id_prod],
-            ])->orwhere([
-            ['status','1'],
-            ['prod_id',$id_samp],
-        ])->get();
+        
+            $jadwal = Konsul::where([
+                ['status','1'],
+                ['prod_id',$produksi[0]->id],
+                ])->orwhere([
+                ['status','1'],
+                ['samp_id',$sampling[0]->id],
+            ])->get();
+        
+        //return $jadwal;
         return view('konsul.pengajuankonsul',compact('sampling','produksi'));
     }
 

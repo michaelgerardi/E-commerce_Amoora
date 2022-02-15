@@ -7,17 +7,17 @@
         <div class="card mb-3">
             <div class="row g-0">
                 <div class="col-md-4">
-                <img src="/storage/imgsampling/{{$sampling->img}}" class="img-fluid rounded-start" alt="...">
+                <img src="/storage/imgsampling/{{$detail->img}}" class="img-fluid rounded-start" alt="...">
                 </div>
                 <div class="col-md-8">
                 <div class="card-body">
-                    <h3 class="card-title">Sampling Yang Dipakai</h3>
+                    <h3 class="card-title">Detail Ukuran Yang Dipakai</h3>
                     <h6>
-                        @if($sampling->model==0) 
+                        @if($detail->model==0) 
                         Rok  
-                        @elseif($sampling->model==1) 
+                        @elseif($detail->model==1) 
                         Dress
-                        @elseif($sampling->model==2) 
+                        @elseif($detail->model==2) 
                         Top
                         @endif
                     </h6>
@@ -33,51 +33,51 @@
                                     <tbody>
                                             <tr>
                                                 <th scope="row">Lingkar Badan</th>
-                                                <td>{{$sampling->ling_b}}</td>
+                                                <td>{{$detail->ling_b}}</td>
                                                 <th scope="row">Lingkar Pinggang</th>
-                                                <td>{{$sampling->ling_pgang}}</td>
+                                                <td>{{$detail->ling_pgang}}</td>
                                                 <th scope="row">Lingkar Pinggul</th>
-                                                <td>{{$sampling->ling_pingl}}</td>
+                                                <td>{{$detail->ling_pingl}}</td>
                                                 <th scope="row">Lingkar Leher</th>
-                                                <td>{{$sampling->ling_lh}}</td>
+                                                <td>{{$detail->ling_lh}}</td>
                                             </tr>
                                         
                                             <tr>
                                                 <th scope="row">Lebar Bahu</th>
-                                                <td>{{$sampling->leb_bahu}}</td>
+                                                <td>{{$detail->leb_bahu}}</td>
                                                 <th scope="row">Panjang Lengan</th>
-                                                <td>{{$sampling->pj_lengan}}</td>
+                                                <td>{{$detail->pj_lengan}}</td>
                                                 <th scope="row">Lingkar Kerung Lengan</th>
-                                                <td>{{$sampling->ling_kr_leng}}</td>
+                                                <td>{{$detail->ling_kr_leng}}</td>
                                                 <th scope="row">Lingkar Lengan</th>
-                                                <td>{{$sampling->ling_lengan}}</td>
+                                                <td>{{$detail->ling_lengan}}</td>
                                             </tr>
                                             
                                             <tr>
                                                 <th scope="row">Lingkar Pergel</th>
-                                                <td>{{$sampling->ling_pergel}}</td>
+                                                <td>{{$detail->ling_pergel}}</td>
                                                 <th scope="row">Lebar Muka</th>
-                                                <td>{{$sampling->leb_muka}}</td>
+                                                <td>{{$detail->leb_muka}}</td>
                                                 <th scope="row">Lebar Punggung</th>
-                                                <td>{{$sampling->leb_pungg}}</td>
+                                                <td>{{$detail->leb_pungg}}</td>
                                                 <th scope="row">Panjang Punggung</th>
-                                                <td>{{$sampling->panj_pungg}}</td>
+                                                <td>{{$detail->panj_pungg}}</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">Panjang Baju</th>
-                                                <td>{{$sampling->panj_baju}}</td>
+                                                <td>{{$detail->panj_baju}}</td>
                                                 <th scope="row">Tinggi Pinggul</th>
-                                                <td>{{$sampling->tinggi_pingl}}</td>
+                                                <td>{{$detail->tinggi_pingl}}</td>
                                                 <th scope="row">Lingkar Paha</th>
-                                                <td>{{$sampling->ling_paha}}</td>
+                                                <td>{{$detail->ling_paha}}</td>
                                                 <th scope="row">Lingkar Lutut</th>
-                                                <td>{{$sampling->ling_lutut}}</td>
+                                                <td>{{$detail->ling_lutut}}</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">Lingkar Kaki</th>
-                                                <td>{{$sampling->ling_kaki}}</td>
+                                                <td>{{$detail->ling_kaki}}</td>
                                                 <th scope="row">Panjang Celana/Rok</th>
-                                                <td>{{$sampling->panj_cln_rok}}</td>
+                                                <td>{{$detail->panj_cln_rok}}</td>
                                             </tr>
                                     </tbody>
                                 </table>
@@ -89,7 +89,7 @@
                         </div>
                     </div>
                     <h6 class="card-text mt-5">Deskripsi</h6>
-                    <p class="card-text">{{$sampling->desc}}</p>
+                    <p class="card-text">{{$detail->desc}}</p>
                 </div>
                 </div>
             </div>

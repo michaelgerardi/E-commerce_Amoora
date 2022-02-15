@@ -241,12 +241,12 @@
                             @foreach($samplingS as $row)
                             <div class="col-lg-4 col-md-6">
                                 <div class="card h-100 card-bordered">
-                                <img src="/storage/imgsampling/{{$row->img}}" class="card-img-top" alt="...">
+                                <img src="/storage/imgsampling/{{DB::table('detail_pakaian')->where('id', $row->detail_id)->value('img')}}" class="card-img-top" alt="...">
                                 <div class="card-body">
                                     <h5 class="title">{{DB::table('slot_s')->where('id', $row->slot_id)->value('mulai')}} s/d {{DB::table('slot_s')->where('id', $row->slot_id)->value('selesai')}} 
                                         <a href="#" class="badge badge-success">Selesai</a>
                                     </h5>
-                                    <h5 class="card-title">@if($row->model==0) rok @elseif($row->model==1) dress @else Top @endif</h5>
+                                    <h5 class="card-title">@if(DB::table('detail_pakaian')->where('id', $row->detail_id)->value('model')==0) rok @elseif(DB::table('detail_pakaian')->where('id', $row->detail_id)->value('model')==1) dress @else Top @endif</h5>
                                     <p class="card-text">{{$row->desc}}</p>
                                     <a href="{{route('vieweditsampling',['id' => $row->id])}}" class="btn btn-primary">Detail</a>
                                     <a type="button" class="btn btn-danger" href="{{route('delS',['id' => $row->id])}}">Delete</a>

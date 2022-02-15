@@ -12,7 +12,7 @@
                         @foreach($sampling as $row)
                         <div class="col-lg-4 col-md-6">
                             <div class="card h-100 card-bordered">
-                            <img src="/storage/imgsampling/{{$row->img}}" class="card-img-top" alt="...">
+                            <img src="/storage/imgsampling/{{DB::table('detail_pakaian')->where('id', $row->detail_id)->value('img')}}" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">{{DB::table('slot_s')->where('id', $row->slot_id)->value('mulai')}} s/d {{DB::table('slot_s')->where('id', $row->slot_id)->value('selesai')}} 
                                     @if($row->status == 0)
@@ -47,7 +47,7 @@
                         @foreach($produksi as $row2)
                         <div class="col-lg-4 col-md-6">
                             <div class="card h-100 card-bordered">
-                            <img src="/storage/imgsampling/{{DB::table('sampling')->where('id', $row2->samp_id)->value('img')}}" width='300' height='300' class="card-img-top" alt="...">
+                            <img src="/storage/imgsampling/{{DB::table('detail_pakaian')->where('id', $row2->detail_id)->value('img')}}" width='300' height='300' class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">{{DB::table('slot_p')->where('id', $row2->slot_id)->value('mulai')}} s/d {{DB::table('slot_p')->where('id', $row2->slot_id)->value('selesai')}} 
                                         @if($row2->status == 0)
@@ -63,7 +63,7 @@
                                         @endif
                                 </h5>
                                 <h5 class="card-title">Jumlah Produksi : {{$row2->jml}}</h5>
-                                <p class="card-text">{{$row2->desc}}</p>
+                                <p class="card-text">{{DB::table('detail_pakaian')->where('id', $row2->detail_id)->value('desc')}}</p>
                                 <a href="{{route('viewpilihkonsul',['id' => $row2->id])}}" class="btn btn-primary">Pilih jadwal Konsul</a>
                             </div>
                             </div>

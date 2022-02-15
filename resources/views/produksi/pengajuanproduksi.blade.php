@@ -9,22 +9,12 @@
                 <h4 class="header-title">Sampling Yang Ada</h4>
                 <p class="text-muted font-14 mb-4">Here are examples of <code>.form-control</code> applied to each textual HTML5 <code>&lt;input&gt;</code> <code>type</code>.</p>
                     <div class="row row-cols-1 row-cols-md-3 g-4">
-                        @foreach($samplingS as $row)
+                        @foreach($detail as $row)
                         <div class="col-lg-4 col-md-6">
                             <div class="card h-100 card-bordered">
                             <img src="/storage/imgsampling/{{$row->img}}" class="card-img-top" alt="...">
                             <div class="card-body">
-                                <h5 class="card-title">{{DB::table('slot_s')->where('id', $row->slot_id)->value('mulai')}} s/d {{DB::table('slot_s')->where('id', $row->slot_id)->value('selesai')}} 
-                                    @if($row->status == 0)
-                                    <span class="badge bg-secondary">Pending</span>
-                                    @elseif($row->status == 1)
-                                    <span class="badge bg-warning">Waiting list</span>
-                                    @elseif($row->status == 2)
-                                    <span class="badge bg-info">Proses</span>
-                                    @elseif($row->status == 3)
-                                    <span class="badge bg-success ">Selesai</span>
-                                    @endif
-                                </h5>
+                            
                                 <h5 class="card-title">@if($row->model==0) rok @elseif($row->model==1) dress @else Top @endif</h5>
                                 <p class="card-text">{{$row->desc}}</p>
                                 <a href="{{route('viewinputproduksi',['id' => $row->id])}}" class="btn btn-primary">Produksi Dengan Sampling ini</a>
@@ -56,7 +46,7 @@
                         @foreach($produksi as $row2)
                         <div class="col-lg-4 col-md-6">
                             <div class="card h-100 card-bordered">
-                            <img src="/storage/imgsampling/{{DB::table('sampling')->where('id', $row2->samp_id)->value('img')}}" width='300' height='300' class="card-img-top" alt="...">
+                            <img src="/storage/imgsampling/{{DB::table('detail_pakaian')->where('id', $row2->detail_id)->value('img')}}" width='300' height='300' class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">{{DB::table('slot_p')->where('id', $row2->slot_id)->value('mulai')}} s/d {{DB::table('slot_p')->where('id', $row2->slot_id)->value('selesai')}} 
                                         @if($row2->status == 0)
