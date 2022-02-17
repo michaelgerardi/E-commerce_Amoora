@@ -15,15 +15,13 @@ class DetailInvoice extends Migration
     {
         Schema::create('detail_invoice', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('samp_id')->nullable();
-            $table->unsignedBigInteger('prod_id')->nullable();
+            $table->unsignedBigInteger('bayar_id')->nullable();
             $table->unsignedSmallInteger('qty');
             $table->text('ket');
             $table->mediumInteger('harga');
             $table->mediumInteger('total');
             $table->timestamps();
-            $table->foreign('samp_id')->references('id')->on('sampling');
-            $table->foreign('prod_id')->references('id')->on('produksi');
+            $table->foreign('bayar_id')->references('id')->on('pembayaran');
     });
     }
 
@@ -34,6 +32,7 @@ class DetailInvoice extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('detail_invoice');
     }
 }

@@ -305,18 +305,18 @@ class AdminController extends Controller
         if($jns==0){
             $jasa=Sampling::where('id',$id)->first();
             $dataD=User::where('id',$jasa->cus_id)->first();
-            $invoice=DetailInvoice::where('samp_id',$jasa->id)->get();
-            $sum=DetailInvoice::where('samp_id',$jasa->id)->sum('total');
+            //$invoice=DetailInvoice::where('samp_id',$jasa->id)->get();
+            //$sum=DetailInvoice::where('samp_id',$jasa->id)->sum('total');
             $pemb=Pembayaran::where('samp_id',$jasa->id)->first();
         }else{
             $jasa=Produksi::where('id',$id)->first();
             $dataD=User::where('id',$jasa->cus_id)->first();
-            $invoice=DetailInvoice::where('prod_id',$jasa->id)->get();
-            $sum=DetailInvoice::where('prod_id',$jasa->id)->sum('total');
+            //$invoice=DetailInvoice::where('prod_id',$jasa->id)->get();
+            //$sum=DetailInvoice::where('prod_id',$jasa->id)->sum('total');
             $pemb=Pembayaran::where('prod_id',$jasa->id)->first();
         }
         //return
-        return view('invoice.lihatinvoiceadm',compact('dataD','jasa','invoice','id','jns','sum','pemb'));
+        return view('invoice.lihatinvoiceadm',compact('dataD','jasa','id','jns','pemb'));
     }
     
     public function addinvoice(Request $request)
@@ -438,5 +438,19 @@ class AdminController extends Controller
         $konsul->save();
         return redirect()->back();
     }
-
+    public function tambahinvoice(Request $request)
+    {
+        if($request->jns==0){
+            $bayar= new Pembayaran([
+                'samp_id' => $request->id,
+                'jenis_jasa' => $request->jns,
+            ]);
+        }else{
+            $bayar= new Pembayaran([
+                'prod_id' => $request->jasa->id,
+                'jenis_jasa' => $request->jns,
+            ]);
+            
+        }
+    }
 }

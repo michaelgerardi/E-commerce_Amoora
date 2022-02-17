@@ -200,16 +200,19 @@ class UserController extends Controller
         Slot_S::where('id', $id_slot)->decrement('jml');
         return redirect()->route('viewsampling');
     }
+
     public function revisisampling($id)
     {
         $sampling=Sampling::where('id','=', $id)->first();
+        $detail=Detail_pakaian::where('id',$sampling->detail_id)->first();
         $slot=Slot_S::where('status','=', '1')->get();
         //return $sampling;
-        return view('sampling.revisisampling',compact('sampling','slot'));
+        return view('sampling.revisisampling',compact('sampling','slot','detail'));
     }
+
     public function saverevisiS(Request $request)
     {
-        $id=Auth::user()->id;
+        $iduser=Auth::user()->id;
         $this->validate($request, [
             'slot_id' => 'required',
             'model' => 'required',
@@ -220,28 +223,69 @@ class UserController extends Controller
         $fullname = $request->file('img_model')->getClientOriginalName();
         $extn =$request->file('img_model')->getClientOriginalExtension();
         $finalS=$id.$request->slot_id.'sampling'.'_'.time().'.'.$extn;
-        $path = $request->file('img_model')->storeAs('public/imgsampling', $finalS);
-        $del=Sampling::where('id','=', $request->id)->value('img');
-        $delpath='public/imgsampling/'.$del;
-        Storage::delete($delpath);
-        Sampling::where('id', $request->id)->update([
-            'slot_id' => $request->slot_id,
+        Detail_pakaian::where('id',$request->id)->update([
             'model' => $request->model,
             'img' => $finalS,
             'desc' => $request->desc,
-            'jml' => $request->jml
-            
+            'ling_b' => $request->ling_b,
+            'ling_pgang' => $request->ling_pgang,
+            'ling_pingl' => $request->ling_pingl,
+            'ling_lh' => $request->ling_lh,
+            'leb_bahu' => $request->leb_bahu,
+            'pj_lengan' => $request->pj_lengan,
+            'ling_kr_leng' => $request->ling_kr_leng,
+            'ling_lengan' => $request->ling_lengan,
+            'ling_pergel' => $request->ling_pergel,
+            'leb_muka' => $request->leb_muka,
+            'leb_pungg' => $request->leb_pungg,
+            'panj_pungg' => $request->panj_pungg,
+            'panj_baju' => $request->panj_baju,
+            'tinggi_pingl' => $request->tinggi_pingl,
+            'ling_pinggang' => $request->ling_pinggang,
+            'ling_pesak' => $request->ling_pesak,
+            'ling_paha' => $request->ling_paha,
+            'ling_lutut' => $request->ling_lutut,
+            'ling_kaki' => $request->ling_kaki,
+            'panj_cln_rok' => $request->panj_cln_rok,
+            'tingg_dudk' => $request->tingg_dudk,
         ]);
         }else{
-            Sampling::where('id', $request->id)->update([
-                'slot_id' => $request->slot_id,
+            Detail_pakaian::where('id',$request->id)->update([
                 'model' => $request->model,
                 'desc' => $request->desc,
-                'status' => 0,
-                'jml' => $request->jml
-                
-            ]); 
+                'ling_b' => $request->ling_b,
+                'ling_pgang' => $request->ling_pgang,
+                'ling_pingl' => $request->ling_pingl,
+                'ling_lh' => $request->ling_lh,
+                'leb_bahu' => $request->leb_bahu,
+                'pj_lengan' => $request->pj_lengan,
+                'ling_kr_leng' => $request->ling_kr_leng,
+                'ling_lengan' => $request->ling_lengan,
+                'ling_pergel' => $request->ling_pergel,
+                'leb_muka' => $request->leb_muka,
+                'leb_pungg' => $request->leb_pungg,
+                'panj_pungg' => $request->panj_pungg,
+                'panj_baju' => $request->panj_baju,
+                'tinggi_pingl' => $request->tinggi_pingl,
+                'ling_pinggang' => $request->ling_pinggang,
+                'ling_pesak' => $request->ling_pesak,
+                'ling_paha' => $request->ling_paha,
+                'ling_lutut' => $request->ling_lutut,
+                'ling_kaki' => $request->ling_kaki,
+                'panj_cln_rok' => $request->panj_cln_rok,
+                'tingg_dudk' => $request->tingg_dudk,
+            ]);
         }
+        Sampling::create([
+            'slot_id' => $request->slot_id,
+            'cus_id' => $iduser,
+            'detail_id' => $request->id,
+            'model' => $request->model,
+            'desc' => $request->desc,
+            'status' => 0,
+            'jml' => $request->jml
+            
+        ]); 
         Slot_S::where('id', $request->slot_id)->increment('jml');
         return redirect()->route('viewsampling');
     }

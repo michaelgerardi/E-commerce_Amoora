@@ -50,6 +50,7 @@ Route::post('/admin/editproduksi/statusProduksi', [App\Http\Controllers\AdminCon
 Route::get('/admin/setjadwal', [App\Http\Controllers\AdminController::class, 'viewformtambahkonsul'])->name('viewformtambahkonsul');
 Route::post('/admin/setjadwal/save', [App\Http\Controllers\AdminController::class, 'tambahkonsul'])->name('tambahkonsul');
     //invoice//
+Route::post('/tambahinvc', [App\Http\Controllers\AdminController::class, 'tambahinvoice'])->name('tambahinvoice');
 Route::get('/invc/{id}/{jns}', [App\Http\Controllers\AdminController::class, 'lihatinvoicesampling'])->name('lihatinvoicesampling');
 Route::post('/invc/additem', [App\Http\Controllers\AdminController::class, 'addinvoice'])->name('addinvoice');
 Route::post('/invc/verifbuktibyr', [App\Http\Controllers\AdminController::class, 'verifbuktibyr'])->name('verifbuktibyr');
