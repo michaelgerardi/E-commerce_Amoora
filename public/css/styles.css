@@ -74,7 +74,11 @@
     -webkit-transition: all 0.3s ease 0s;
     transition: all 0.3s ease 0s;
 }
-
+.unstyled-btn {
+    border: none;
+    padding: 0;
+    background: none;
+  }
 .card:hover {
     box-shadow: 0 5px 30px rgba(0, 0, 0, 0.02);
 }

@@ -22,7 +22,11 @@
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
-
+.unstyled-btn {
+	border: none;
+	padding: 0;
+	background: none;
+  }
 .ti-wand:before {
 	content: "\e600";
 }

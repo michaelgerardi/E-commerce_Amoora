@@ -20,7 +20,7 @@ class Pembayaran extends Migration
             $table->char('jenis_jasa', 1);
             $table->char('jenis_pembayaran', 1)->nullable();
             $table->text('img_bukti')->nullable();
-            $table->text('file_invoice');
+            $table->text('file_invoice')->nullable();
             $table->char('status', 1)->default('0');
             $table->timestamps();
             $table->foreign('samp_id')->references('id')->on('sampling');

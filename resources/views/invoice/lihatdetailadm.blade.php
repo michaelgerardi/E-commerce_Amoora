@@ -25,7 +25,7 @@
                             </div>
                             <div class="col-md-2 text-md-left">
                                 <ul class="invoice-date">
-                                    <li>NO : </li>
+                                    <li>NO : {{$id}} </li>
                                     <li>Nama : {{$dataD->name}}</li>
                                     <li>No Telp : {{$dataD->no_telp}}</li>
                                     <li>Tgl Masuk : {{$jasa->created_at}}</li>
@@ -130,49 +130,7 @@
                 </div>
             </div>
 
-            <div class="card mt-5">
-                <div class="card-body">
-                    <div class="single-table">
-                        <div class="table-responsive">
-                            <table class="table table-hover progress-table text-center">
-                                <thead class="text-uppercase">
-                                    <tr>
-                                        <th scope="col">Bukti Bayar</th>
-                                        <th scope="col">Jenis Pembayaran</th>
-                                        <th scope="col">Status</th>
-                                        <th scope="col">Action</th>
-                                    </tr>
-                                </thead>
-                                @if($pemb !=null)
-                                    <tr>
-                                        <td>
-                                        @if($jns==0)
-                                        <a href="/storage/buktibayar/{{$pemb->img_bukti}}" class="btn btn-primary">lihat invoice</a>
-                                        @else
-                                        <a href="/storage/buktibayar/{{$pemb->img_bukti}}" class="btn btn-primary">lihat invoice</a>
-                                        @endif
-                                        </td>
-                                        <td>{{$pemb->jenis_pembayaran}}</td>
-                                        
-                                        <td>@if($pemb->status==0) Belum Lunas @elseif($pemb->status==1) Menunggu @elseif($pemb->status==2) Lunas @endif</td>
-                                        <td>
-                                            <form action="{{route('verifbuktibyr')}}" method="post">
-                                                @csrf
-                                                <input type="hidden" name="id" value="{{$pemb->id}}">
-                                                <input type="hidden" name="jns" value="{{$jns}}">
-                                                <button type="submit" class="btn btn-primary">Verif</button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    @endif
-                                <tbody>
-                                
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            
 
         </div>
     </div>

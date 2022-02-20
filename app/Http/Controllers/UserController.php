@@ -410,8 +410,10 @@ class UserController extends Controller
             ['status','!=', '6'],
             ])->get();
         $prod = Produksi::where('cus_id',$id)->get();
-        //return $prod;
-        return view('invoice.listbayar',compact('sampling','prod'));
+        $pemba1 =Pembayaran::wherein('samp_id',$sampling->pluck('id'));
+        $pemba =Pembayaran::wherein('prod_id',$prod->pluck('id'))->union($pemba1)->get();
+        //return $pemba;
+        return view('invoice.listbayar',compact('pemba'));
     }
     public function inputbuktibyr(Request $request)
     {
@@ -466,10 +468,10 @@ class UserController extends Controller
         
             $jadwal = Konsul::where([
                 ['status','1'],
-                ['prod_id',$produksi[0]->id],
+                //['prod_id',$produksi[0]->id],
                 ])->orwhere([
                 ['status','1'],
-                ['samp_id',$sampling[0]->id],
+                //['samp_id',$sampling[0]->id],
             ])->get();
         
         //return $jadwal;

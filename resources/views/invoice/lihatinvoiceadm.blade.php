@@ -11,6 +11,7 @@
                             <table class="table table-hover progress-table text-center">
                                 <thead class="text-uppercase">
                                     <tr>
+                                        <th scope="col">No Nota</th>
                                         <th scope="col">Bukti Bayar</th>
                                         <th scope="col">Jenis Pembayaran</th>
                                         <th scope="col">Status</th>
@@ -18,30 +19,32 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                @if($pemb !=null)
+                                @foreach($pemb as $row)
                                     <tr>
+                                        <td>{{$row->id}}</td>
                                         <td>
-                                        @if($jns==0)
-                                        <a href="/storage/buktibayar/{{$pemb->img_bukti}}" class="btn btn-primary">lihat bukti bayar</a>
+                                        @if($row->img_bukti !=null)
+                                        <a href="/storage/buktibayar/{{$row->img_bukti}}" class="btn btn-primary" disabled>lihat bukti bayar</a>
                                         @else
-                                        <a href="/storage/buktibayar/{{$pemb->img_bukti}}" class="btn btn-primary">lihat bukti bayar</a>
+                                        <p>Belum Ada</p>
                                         @endif
                                         </td>
-                                        <td>{{$pemb->jenis_pembayaran}}</td>
+                                        <td>{{$row->jenis_pembayaran}}</td>
                                         
-                                        <td>@if($pemb->status==0) Belum Lunas @elseif($pemb->status==1) Menunggu @elseif($pemb->status==2) Lunas @endif</td>
+                                        <td>@if($row->status==0) Belum Lunas @elseif($row->status==1) Menunggu @elseif($row->status==2) Lunas @endif</td>
                                         <td>
                                             <form action="{{route('verifbuktibyr')}}" method="post">
                                                 @csrf
-                                                <input type="hidden" name="id" value="{{$pemb->id}}">
+                                                <input type="hidden" name="id" value="{{$row->id}}">
                                                 <input type="hidden" name="jns" value="{{$jns}}">
                                                 <button type="submit" class="btn btn-primary">Verif Bukti Bayar</button>
-                                                <button type="submit" class="btn btn-primary">Detail Nota</button>
+                                                <a href="{{route('lihatdetailinvoice',['id' => $row->id,'jns' => $jns])}}" class="btn btn-primary" disabled>Detail</a>
                                             </form>
                                         </td>
                                     </tr>
-                                    @endif
+                                    @endforeach
                                     <tr>
+                                        <td></td>
                                         <td></td>
                                         <td></td>
                                         <td></td>
@@ -49,8 +52,9 @@
                                             <ul class="d-flex justify-content-center">
                                                 <form action="{{route('tambahinvoice')}}" method="post">
                                                     @csrf
-                                                    <input type="hidden" name="">
-                                                <li><button type="submit" data-toggle="modal" data-target="#exampleModalLong"class="text-danger"><i class="ti-plus"></i></button></li>
+                                                    <input type="hidden" name="jasa_id" value='{{$jasa->id}}'>
+                                                    <input type="hidden" name="jns" value='{{$jns}}'>
+                                                <li><button type="submit" class="unstyled-btn text-danger"><i class="ti-plus"></i></button></li>
                                                 </form>
                                             </ul>
                                         </td>

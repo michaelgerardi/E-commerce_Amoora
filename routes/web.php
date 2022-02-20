@@ -52,6 +52,7 @@ Route::post('/admin/setjadwal/save', [App\Http\Controllers\AdminController::clas
     //invoice//
 Route::post('/tambahinvc', [App\Http\Controllers\AdminController::class, 'tambahinvoice'])->name('tambahinvoice');
 Route::get('/invc/{id}/{jns}', [App\Http\Controllers\AdminController::class, 'lihatinvoicesampling'])->name('lihatinvoicesampling');
+Route::get('/invcd/{id}/{jns}', [App\Http\Controllers\AdminController::class, 'lihatdetailinvoice'])->name('lihatdetailinvoice');
 Route::post('/invc/additem', [App\Http\Controllers\AdminController::class, 'addinvoice'])->name('addinvoice');
 Route::post('/invc/verifbuktibyr', [App\Http\Controllers\AdminController::class, 'verifbuktibyr'])->name('verifbuktibyr');
 Route::get('/invc/pdf/{id}/{jns}', [App\Http\Controllers\AdminController::class, 'generateinvoicesampling'])->name('generateinvoicesampling');
