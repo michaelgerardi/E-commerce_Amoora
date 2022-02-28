@@ -447,5 +447,21 @@ class AdminController extends Controller
         $konsul->save();
         return redirect()->back();
     }
-    
+    public function tgljadi(Request $request)
+    {
+        
+        $this->validate($request, [
+            'tgl_jadi' => 'required',
+        ]);
+        if($request->jns==0){
+            Sampling::where('id',$request->id)->update([
+                'tgl_jadi' => $request->tgl_jadi,
+            ]);
+        }else if($request->jns==1){
+            Produksi::where('id',$request->id)->update([
+                'tgl_jadi' => $request->tgl_jadi,
+            ]);
+        }
+        return redirect()->back();
+    }
 }
