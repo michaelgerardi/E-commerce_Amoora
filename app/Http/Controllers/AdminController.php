@@ -428,19 +428,20 @@ class AdminController extends Controller
     {
         $id_admin=Auth::user()->id;
         $jadwal = Konsul::all();
-        return view('konsul.setjadwal',compact('id_admin','jadwal'));
+        $jadwal1 = Konsul::where('status','1')->get();
+        return view('konsul.setjadwal',compact('id_admin','jadwal','jadwal1'));
     }
     public function tambahkonsul(Request $request)
-    {
-        
+    { 
         $this->validate($request, [
             'title' => 'required',
-            'tgl' => 'required',
+            'jns' => 'required',
             'mulai' => 'required', 
         ]);
         $konsul= new Konsul([
             'title' => $request->title,
             'tgl' => $request->tgl,
+            'jenis' => $request->jns,
             'mulai' => $request->mulai,
             'status' =>'0'
         ]);
@@ -449,7 +450,6 @@ class AdminController extends Controller
     }
     public function tgljadi(Request $request)
     {
-        
         $this->validate($request, [
             'tgl_jadi' => 'required',
         ]);

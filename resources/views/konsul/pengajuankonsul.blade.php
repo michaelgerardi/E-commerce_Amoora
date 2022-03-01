@@ -29,7 +29,7 @@
                                 </h5>
                                 <h5 class="card-title">@if($row->model==0) rok @elseif($row->model==1) dress @else Top @endif</h5>
                                 <p class="card-text">{{$row->desc}}</p>
-                                <a href="{{route('viewpilihkonsul',['id' => $row->id])}}" class="btn btn-primary">Pilih jadwal Konsul</a>
+                                <a href="{{route('viewpilihkonsul',['id' => $row->id,'jns' => 0])}}" class="btn btn-primary">Pilih jadwal Konsul</a>
                             </div>
                             </div>
                         </div> 
@@ -64,7 +64,7 @@
                                 </h5>
                                 <h5 class="card-title">Jumlah Produksi : {{$row2->jml}}</h5>
                                 <p class="card-text">{{DB::table('detail_pakaian')->where('id', $row2->detail_id)->value('desc')}}</p>
-                                <a href="{{route('viewpilihkonsul',['id' => $row2->id])}}" class="btn btn-primary">Pilih jadwal Konsul</a>
+                                <a href="{{route('viewpilihkonsul',['id' => $row2->id,'jns' => 1])}}" class="btn btn-primary">Pilih jadwal Konsul</a>
                             </div>
                             </div>
                         </div> 

@@ -478,11 +478,22 @@ class UserController extends Controller
         return view('konsul.pengajuankonsul',compact('sampling','produksi'));
     }
 
-    public function viewpilihkonsul($id)
+    public function viewpilihkonsul($id,$jns)
     {
         $jadwal = Konsul::where('status','0')->get();
+        if($jns==0){
+            $jadwal1 = Konsul::where([
+                ['status','1'],
+                ['samp_id',$id]
+            ])->get();
+        }else{
+            $jadwal1 = Konsul::where([
+                ['status','1'],
+                ['prod_id',$id]
+            ])->get();
+        }
         $cal = Konsul::all();
-        return view('konsul.ambiljadwal',compact('jadwal','id','cal'));
+        return view('konsul.ambiljadwal',compact('jadwal','jadwal1','id','cal'));
     }
 
     public function pilihkonsul(Request $request)

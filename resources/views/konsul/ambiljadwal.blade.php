@@ -20,7 +20,7 @@
                                             <label class="col-form-label">Slot</label>
                                             <select class="custom-select" name="id">
                                                 @foreach($jadwal as $row)
-                                                    <option value="{{$row->id}}">{{$row->tgl}} Pada Jam {{$row->mulai}}</option>
+                                                    <option value="{{$row->id}}">@if($row->jenis == 0)Tatap Muka @else Online @endif {{$row->tgl}} Pada Jam {{$row->mulai}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -75,7 +75,7 @@
                     // {title:'eek',start:'2022-02-08'},
                     <?php
                  foreach($cal as $row){
-                     $echo="{"."title: "."'".$row['title']." ".$row['mulai']."'".",
+                     $echo="{"."title: "."'".$row['mulai'].' WIB'."'".",
                         start: "."'".$row['tgl']."'".",";
                         
                         if ($row['status']==0) {

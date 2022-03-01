@@ -81,7 +81,7 @@ Route::get('/produksi/custom/samp', [App\Http\Controllers\UserController::class,
 Route::post('/produksi/custom/samp/save', [App\Http\Controllers\UserController::class, 'savesamplingcustom'])->name('savesamplingcustom');
     //konsul//
 Route::get('/konsul', [App\Http\Controllers\UserController::class, 'viewkonsul'])->name('viewkonsul');
-Route::get('/konsul/input/{id}', [App\Http\Controllers\UserController::class, 'viewpilihkonsul'])->name('viewpilihkonsul');
+Route::get('/konsul/input/{id}/{jns}', [App\Http\Controllers\UserController::class, 'viewpilihkonsul'])->name('viewpilihkonsul');
 Route::post('/konsul/input/save', [App\Http\Controllers\UserController::class, 'pilihkonsul'])->name('pilihkonsul');   
     //invoice//
 Route::post('/listbayar/bukti', [App\Http\Controllers\UserController::class, 'inputbuktibyr'])->name('inputbuktibyr');   
