@@ -427,13 +427,13 @@ class UserController extends Controller
                 $extn =$request->file('img_bukti')->getClientOriginalExtension();
                 $finalS=$request->jns.'buktibayar'.'_'.$request->id.'_'.$id.'.'.$extn;
                 $path = $request->file('img_bukti')->storeAs('public/buktibayar', $finalS);
-                Pembayaran::where('samp_id',$request->id)->update([
+                Pembayaran::where('id',$request->id)->update([
                     'jenis_pembayaran' => $request->jenis_pembayaran,
                     'img_bukti' => $finalS,
                     'status' => 1,
                 ]);
             }else{
-                Pembayaran::where('samp_id',$request->id)->update([
+                Pembayaran::where('id',$request->id)->update([
                     'jenis_pembayaran' => $request->jenis_pembayaran,
                     'status' => 1,
                 ]);
@@ -444,13 +444,13 @@ class UserController extends Controller
                 $extn =$request->file('img_bukti')->getClientOriginalExtension();
                 $finalS=$request->jns.'buktibayar'.'_'.$request->id.'_'.$id.'.'.$extn;
                 $path = $request->file('img_bukti')->storeAs('public/buktibayar', $finalS);
-                Pembayaran::where('prod_id',$request->id)->update([
+                Pembayaran::where('id',$request->id)->update([
                     'jenis_pembayaran' => $request->jenis_pembayaran,
                     'img_bukti' => $finalS,
                     'status' => 1,
                 ]);
             }else{
-                Pembayaran::where('prod_id',$request->id)->update([
+                Pembayaran::where('id',$request->id)->update([
                     'jenis_pembayaran' => $request->jenis_pembayaran,
                     'status' => 1,
                 ]);
