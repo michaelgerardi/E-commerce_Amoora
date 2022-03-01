@@ -1,5 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);
-/* @charset "UTF-8"; */
+@charset "UTF-8";
 /*!
  * Bootstrap v5.1.3 (https://getbootstrap.com/)
  * Copyright 2011-2021 The Bootstrap Authors
@@ -70,12 +70,6 @@
   :root {
     scroll-behavior: smooth;
   }
-}
-
-.unstyled-btn {
-  border: none;
-  padding: 0;
-  background: none;
 }
 
 body {

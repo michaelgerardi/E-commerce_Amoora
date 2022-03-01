@@ -12,7 +12,10 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+//live-msg//
+Route::get('/chat', [App\Http\Controllers\ChatsController::class, 'index']);
+Route::get('/messages', [App\Http\Controllers\ChatsController::class, 'fetchMessages']);
+Route::post('/messages', [App\Http\Controllers\ChatsController::class, 'sendMessage']);
 //coba//
 Route::get('/coba', [App\Http\Controllers\HomeController::class, 'indexcoba'])->name('indexcoba');
 
