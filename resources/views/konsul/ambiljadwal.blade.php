@@ -15,7 +15,6 @@
                                         @csrf
                                         <input type="hidden" name="jasa_id" value="{{$id}}">
                                         <h4 class="header-title">isi dengan jadwal konsul </h4>
-                                        <p class="text-muted font-14 mb-4">Here are examples of <code>.form-control</code> applied to each textual HTML5 <code>&lt;input&gt;</code> <code>type</code>.</p>
                                         <div class="form-group">
                                             <label class="col-form-label">Slot</label>
                                             <select class="custom-select" name="id">

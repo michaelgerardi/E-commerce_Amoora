@@ -15,7 +15,6 @@
                                     <form method="post" action="{{route('tambahkonsul')}}" enctype='multipart/form-data'>
                                         @csrf
                                         <h4 class="header-title">isi dengan jadwal konsul </h4>
-                                        <p class="text-muted font-14 mb-4">Here are examples of <code>.form-control</code> applied to each textual HTML5 <code>&lt;input&gt;</code> <code>type</code>.</p>
                                         <div class="form-group">
                                             <label for="example-text-input" class="col-form-label">title</label>
                                             <input class="form-control" type="text" value="" name="title">
